@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DataLayer\" />
-    <Folder Include="Views\Library\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
       <PrivateAssets>all</PrivateAssets>
@@ -26,6 +21,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EntLibraryProj.Services\EntLibraryProj.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DataLayer\" />
   </ItemGroup>
 
 </Project>

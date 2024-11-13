@@ -1,26 +1,24 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EntLibraryProj.Entities
 {
     public class LibraryItem
     {
+        [Key]
         public int ItemId { get; set; }
-        public string? ItemName { get; set; }
-        public string? Authors { get; set; }
-        public string? Publisher { get; set; }
-        public string? Country { get; set; }
-        public string? ItemDescription { get; set; }
-        [ForeignKey("Category")]
-        public int CategoryId { get; set; }
-        public virtual Category CategoryName { get; set; }
-        public string? GenreTags { get; set; }  
+
+        [ForeignKey("Test")]
+        public int TestId { get; set; }
+        public Test? Item { get; set; }
+
+        public string? type { get; set; }
+        public string? Genre { get; set; }  
+        public int? Inventory { get; set; }
+        public int? Available { get; set; }
+
         public string? DateAdded { get; set; }
-        public string? DateReleased { get; set; }
-        public string? Edition {  get; set; }
-        public int? InventoryCount { get; set; }
-        public int? InventoryTakenOut { get; set; }
-        public string? ImageLink { get; set; }
-        public bool? IsRestricted { get; set; }
+        public string? Edition { get; set; }
 
 
     }

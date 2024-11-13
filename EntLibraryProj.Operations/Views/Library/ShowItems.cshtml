@@ -1,0 +1,101 @@
+﻿@using EntLibraryProj.Entities
+
+@model List<LibraryItem>
+
+    <table border=1 class="table table-striped">
+        <thead>
+            <tr style="background-color:DarkSeaGreen;">
+                <th>
+                    @Html.DisplayNameFor(Model => Model[0].ItemId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(Model => Model[0].type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(Model => Model[0].Genre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(Model => Model[0].Inventory)
+                </th>
+                <th>
+                @Html.DisplayNameFor(Model => Model[0].Available)
+                </th>
+                <th>
+                @Html.DisplayNameFor(Model => Model[0].DateAdded)
+                </th>
+                <th>
+                @Html.DisplayNameFor(Model => Model[0].Edition)
+                </th>
+                   @if(Model[0] != null)
+                   {
+                        @if (Model[0].Item != null)
+                        {
+                            @foreach (string s in Model[0].Item.TagNames())
+                            {
+                            <th>@s</th>
+                            }
+                        }
+                   }
+
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var Item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(I => Item.ItemId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(I => Item.type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(I => Item.Genre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(I => Item.Inventory)
+                        </td>
+                        <td>
+                        @Html.DisplayFor(I => Item.Available)
+                        </td>
+                        <td>
+                        @Html.DisplayFor(I => Item.DateAdded)
+                        </td>
+                        <td>
+                        @Html.DisplayFor(I => Item.Edition)
+                        </td>
+                         @if (Item.Item != null)
+                        
+                            @foreach (string s in Item.Item.Tags())
+                            {
+                                <td>
+                                @s
+                                </td>
+                            }
+                        }
+                   
+                        <td>
+                            <a  class="nav-link text-dark" class="btn btn-primary" asp-route-id="" asp-controller="Student" asp-action="Details">Details</a>
+                            <a  class="nav-link text-dark" class="btn btn-primary" asp-route-id="" asp-controller="Student" asp-action="DeleteStudent">Delete</a>
+                            <a  class="nav-link text-dark" class="btn btn-primary" asp-route-id="" asp-controller="Student" asp-action="EditStudent">Edit</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4">
+                        No students are available in database.
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
