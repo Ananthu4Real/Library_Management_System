@@ -20,7 +20,7 @@ namespace EntLibraryProj.Entities
         public int? InventoryCount { get; set; }
         public int? InventoryTakenOut { get; set; }
         public string? ImageLink { get; set; }
-
+        public bool? IsRestricted { get; set; }
 
 
     }
