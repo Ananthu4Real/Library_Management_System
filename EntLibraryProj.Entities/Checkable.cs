@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EntLibraryProj.Entities
 {
-    public abstract class Test
+    public abstract class Checkable
     {
       [Key]
       public int Id { get; set; }

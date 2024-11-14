@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EntLibraryProj.Entities
 {
-    public class Movie : Test
+    public class Movie : Checkable
     {
         public string? Title { get; set; }
         public string? Director { get; set; }
@@ -18,7 +18,7 @@ namespace EntLibraryProj.Entities
 
 
 
-        public override List<string> TagNames()
+        public override List<string> Tags()
         {
             List<string> tags = new List<string>();
             tags.Add(Title);
@@ -29,7 +29,7 @@ namespace EntLibraryProj.Entities
             return tags;
         }
 
-        public override List<string> Tags()
+        public override List<string> TagNames()
         {
             List<string> tags = new List<string>();
             tags.Add("Title");

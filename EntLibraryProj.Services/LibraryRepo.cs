@@ -37,23 +37,14 @@ namespace EntLibraryProj.Services
             return L;
         }
 
-        public IEnumerable<LibraryItem> GetItems()
+        public List<LibraryItem> GetItems()
         {
-            return _context.LibraryItems;
+            return _context.LibraryItems.Include("Check").ToList();
         }
 
         public void UpdateItem(LibraryItem item)
         {
-            LibraryItem? L = _context.LibraryItems.Find(item.ItemId);
-            if (L == null) { return; }
-            L.TestId = item.TestId;
-            L.type = item.type;
-            L.Genre = item.Genre;
-            L.Inventory = item.Inventory;
-            L.Available = item.Available;
-            L.DateAdded = item.DateAdded;
-            L.Edition = item.Edition;
-            _context.SaveChanges();
+            
         }
     }
 }

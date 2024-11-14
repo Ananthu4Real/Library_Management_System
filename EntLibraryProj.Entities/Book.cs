@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EntLibraryProj.Entities
 {
-    public class Book : Test
+    public class Book : Checkable
     {
         public string? Title { get; set; }
         public string? Author { get; set; }

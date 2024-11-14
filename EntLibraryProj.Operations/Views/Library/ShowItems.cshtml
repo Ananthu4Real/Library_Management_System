@@ -9,7 +9,7 @@
                     @Html.DisplayNameFor(Model => Model[0].ItemId)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(Model => Model[0].type)
+                    @Html.DisplayNameFor(Model => Model[0].Type)
                 </th>
                 <th>
                     @Html.DisplayNameFor(Model => Model[0].Genre)
@@ -23,14 +23,11 @@
                 <th>
                 @Html.DisplayNameFor(Model => Model[0].DateAdded)
                 </th>
-                <th>
-                @Html.DisplayNameFor(Model => Model[0].Edition)
-                </th>
                    @if(Model[0] != null)
                    {
-                        @if (Model[0].Item != null)
+                        @if (Model[0].Check != null)
                         {
-                            @foreach (string s in Model[0].Item.TagNames())
+                            @foreach (string s in Model[0].Check.TagNames())
                             {
                             <th>@s</th>
                             }
@@ -52,7 +49,7 @@
                             @Html.DisplayFor(I => Item.ItemId)
                         </td>
                         <td>
-                            @Html.DisplayFor(I => Item.type)
+                            @Html.DisplayFor(I => Item.Type)
                         </td>
                         <td>
                             @Html.DisplayFor(I => Item.Genre)
@@ -66,12 +63,9 @@
                         <td>
                         @Html.DisplayFor(I => Item.DateAdded)
                         </td>
-                        <td>
-                        @Html.DisplayFor(I => Item.Edition)
-                        </td>
-                         @if (Item.Item != null)
+                         @if (Item.Check != null)
                         
-                            @foreach (string s in Item.Item.Tags())
+                            @foreach (string s in Item.Check.Tags())
                             {
                                 <td>
                                 @s

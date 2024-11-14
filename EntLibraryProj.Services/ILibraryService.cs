@@ -10,7 +10,7 @@ namespace EntLibraryProj.Services
 {
     public interface ILibraryService
     {
-        public IEnumerable<LibraryItem> GetItems();
+        public List<LibraryItem> GetItems();
         public LibraryItem? GetItem(int id);
         public void DeleteItem(LibraryItem item);
         public void AddItem(LibraryItem item);

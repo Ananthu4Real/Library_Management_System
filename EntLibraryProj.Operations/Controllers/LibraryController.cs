@@ -16,10 +16,30 @@ namespace EntLibraryProj.Operations.Controllers
             _movieService = movieService;
             _libraryService = libraryService;
         }
+        public void CheckItems(LibraryItem item)
+        {
+            if (item.Type == "Book")
+            {
+                item.Check = _bookService.GetBook(item.CheckId);
+                return;
+            }
+            if (item.Type == "Movie")
+            {
+                item.Check = _movieService.GetMovie(item.CheckId);
+                return;
+            }
+        }
         public IActionResult ShowItems() 
-        { 
-            List<LibraryItem> Items = _libraryService.GetItems().ToList();
+        {
+            List<LibraryItem> Items = _libraryService.GetItems();
+            /*
+            foreach(LibraryItem item in Items)
+            {
+               CheckItems(item);
+            }
+            */
             return View(Items);
         }
+
     }
 }
