@@ -1,0 +1,46 @@
+﻿@using EntLibraryProj.Entities
+@model LibraryItem
+
+@using (Html.BeginForm("ShowItems", "Library", FormMethod.Get))
+{
+    @Html.Label("Id:  ")
+    @Html.Label(Model.ItemId.ToString())
+    <br />
+    @Html.Label("Category:  ")
+    @Html.Label(Model.Category)
+    <br />
+    @Html.Label("Name:  ")
+    @Html.Label(Model.ItemName)
+    <br />
+    @Html.Label("Creator:  ")
+    @Html.Label(Model.CreatorName)
+    <br />
+    @Html.Label("Publisher: ")
+    @Html.Label(Model.Publisher)
+    <br />
+    @Html.Label("Country of Origin:  ")
+    @Html.Label(Model.OriginCountry)
+    <br />
+    @Html.Label("Description:  ")
+    @Html.Label(Model.ItemDescription)
+    <br />
+    @Html.Label("Genre:  ")
+    @Html.Label(Model.Genre)
+    <br />
+    @Html.Label("Inventory:  ")
+    @Html.Label(Model.Inventory.ToString())
+    <br />
+    @Html.Label("Available:  ")
+    @Html.Label(Model.Available.ToString())
+    <br />
+    @Html.Label("Date Added:  ")
+    @Html.Label(Model.DateAdded.ToString())
+    <br />
+    <input type="submit" class="btn btn-primary" value="Back" />
+}
+
+@using (Html.BeginForm("Index", "Home"))
+{
+    <input type="submit" value="Home" />
+}
+

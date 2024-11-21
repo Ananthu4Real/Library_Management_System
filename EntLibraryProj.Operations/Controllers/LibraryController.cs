@@ -6,39 +6,64 @@ namespace EntLibraryProj.Operations.Controllers
 {
     public class LibraryController : Controller
     {
-        private IBookService _bookService;
-        private IMovieService _movieService;
         private ILibraryService _libraryService;
 
-        public LibraryController(IBookService bookService, IMovieService movieService, ILibraryService libraryService)
+        public LibraryController(ILibraryService libraryService)
         {
-            _bookService = bookService;
-            _movieService = movieService;
             _libraryService = libraryService;
-        }
-        public void CheckItems(LibraryItem item)
-        {
-            if (item.Type == "Book")
-            {
-                item.Check = _bookService.GetBook(item.CheckId);
-                return;
-            }
-            if (item.Type == "Movie")
-            {
-                item.Check = _movieService.GetMovie(item.CheckId);
-                return;
-            }
         }
         public IActionResult ShowItems() 
         {
             List<LibraryItem> Items = _libraryService.GetItems();
-            /*
-            foreach(LibraryItem item in Items)
-            {
-               CheckItems(item);
-            }
-            */
             return View(Items);
+        }
+
+        [HttpGet]
+        public IActionResult AddItem()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddItem(LibraryItem item)
+        {
+            if (_libraryService.GetItem(item.ItemId) != null)
+            {
+                ViewBag.Status = true;
+                return View();
+            }
+            item.Available = item.Inventory; //available = inventory
+            item.DateAdded = DateOnly.FromDateTime(DateTime.Now); //today
+            _libraryService.AddItem(item);
+            return RedirectToAction("ShowItems");
+        }
+
+        [HttpGet]
+        public IActionResult DeleteItem(int id) 
+        {
+            _libraryService.DeleteItem(id);
+            return RedirectToAction("ShowItems");
+        }
+
+        [HttpGet]
+        public IActionResult ItemDetails(int id)
+        {
+            LibraryItem? item = _libraryService.GetItem(id);
+            if (item == null) {return RedirectToAction("ShowItems"); }
+            return View(item);
+        }
+        [HttpGet]
+        public IActionResult UpdateItem(int id)
+        {
+            LibraryItem? item = _libraryService.GetItem(id);
+            if (item == null) { return RedirectToAction("ShowItems"); }
+            return View(item);
+        }
+        [HttpPost]
+        public IActionResult UpdateItem(LibraryItem item)
+        {
+            _libraryService.UpdateItem(item);
+            return RedirectToAction("ShowItems");
         }
 
     }

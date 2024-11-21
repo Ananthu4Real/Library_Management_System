@@ -5,8 +5,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IBookService, BookRepo>();
-builder.Services.AddScoped<IMovieService, MovieRepo>();
 builder.Services.AddScoped<ILibraryService, LibraryRepo>();
 builder.Services.AddDbContext<LibraryDbContext>(option => option.UseSqlite(builder.Configuration.GetConnectionString("SQLite")));
 

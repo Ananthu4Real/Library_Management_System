@@ -1,0 +1,49 @@
+﻿@using EntLibraryProj.Entities
+@model LibraryItem
+
+@using (Html.BeginForm("AddItem", "Library", FormMethod.Post))
+{
+    @Html.Label("Enter Item Id")
+    @Html.TextBoxFor(m => m.ItemId, new { @type = "number" })
+    <br />
+    @Html.Label("Pick Category")
+    <select asp-for="Category">
+        @foreach (ItemType Cat in Enum.GetValues(typeof(ItemType)))
+        {
+            <option value="@Cat.ToString()"> @Cat.ToString() </option>
+        }
+    </select>
+    <br />
+    @Html.Label("Item Name")
+    @Html.TextBoxFor(m => m.ItemName)
+    <br />
+    @Html.Label("Creator of Item")
+    @Html.TextBoxFor(m => m.CreatorName)
+    <br />
+    @Html.Label("Enter Publisher")
+    @Html.TextBoxFor(m => m.Publisher)
+    <br />
+    @Html.Label("Enter Country of Origin")
+    @Html.TextBoxFor(m => m.OriginCountry)
+    <br />
+    @Html.Label("Enter Item Description")
+    @Html.TextBoxFor(m => m.ItemDescription)
+    <br />
+    @Html.Label("Enter Item's Genre")
+    @Html.TextBoxFor(m => m.Genre)
+    <br />
+    @Html.Label("Enter Item Inventory")
+    @Html.TextBoxFor(m => m.Inventory, new { @type = "number" })
+    <br />
+    <input type="submit" class="btn btn-primary" value="Create Item" />
+}
+
+@if (ViewBag.Status == true)
+{
+    <h1>Sorry, Item id already exists</h1>
+}
+
+@using (Html.BeginForm("Index", "Home"))
+{
+    <input type="submit" value="Home" />
+}

@@ -23,9 +23,9 @@ namespace EntLibraryProj.Services
             _context.SaveChanges();
         }
 
-        public void DeleteItem(LibraryItem item)
+        public void DeleteItem(int id)
         {
-            LibraryItem? L = _context.LibraryItems.Find(item.ItemId);
+            LibraryItem? L = _context.LibraryItems.Find(id);
             if (L == null) { return; }
             _context.LibraryItems.Remove(L);
             _context.SaveChanges();
@@ -39,12 +39,24 @@ namespace EntLibraryProj.Services
 
         public List<LibraryItem> GetItems()
         {
-            return _context.LibraryItems.Include("Check").ToList();
+            return _context.LibraryItems.ToList();
         }
 
         public void UpdateItem(LibraryItem item)
         {
-            
+            LibraryItem? L = GetItem(item.ItemId);
+            if (L == null) { return; }
+            L.ItemName = item.ItemName;
+            L.CreatorName = item.CreatorName;
+            L.Publisher = item.Publisher;
+            L.OriginCountry = item.OriginCountry;
+            L.ItemDescription = item.ItemDescription;
+            L.Category = item.Category;
+            L.Genre = item.Genre;
+            L.Inventory = item.Inventory;
+            L.Available = item.Available;
+            L.DateAdded = item.DateAdded;
+            _context.SaveChanges();
         }
     }
 }

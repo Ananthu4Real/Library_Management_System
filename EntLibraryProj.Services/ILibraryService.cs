@@ -12,7 +12,7 @@ namespace EntLibraryProj.Services
     {
         public List<LibraryItem> GetItems();
         public LibraryItem? GetItem(int id);
-        public void DeleteItem(LibraryItem item);
+        public void DeleteItem(int id);
         public void AddItem(LibraryItem item);
         public void UpdateItem(LibraryItem item);
     }

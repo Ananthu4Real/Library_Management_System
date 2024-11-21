@@ -1,38 +1,35 @@
 ﻿@using EntLibraryProj.Entities
-
 @model List<LibraryItem>
+
+@using (Html.BeginForm("AddItem", "Library", FormMethod.Get))
+{
+    <input type="submit" value="Create Library Item" />
+}
 
     <table border=1 class="table table-striped">
         <thead>
             <tr style="background-color:DarkSeaGreen;">
                 <th>
-                    @Html.DisplayNameFor(Model => Model[0].ItemId)
+                    @Html.DisplayNameFor(m => m[0].ItemId)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(Model => Model[0].Type)
+                    @Html.DisplayNameFor(m => m[0].Category)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(Model => Model[0].Genre)
+                    @Html.DisplayNameFor(m => m[0].ItemName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(Model => Model[0].Inventory)
+                    @Html.DisplayNameFor(m => m[0].CreatorName)
                 </th>
                 <th>
-                @Html.DisplayNameFor(Model => Model[0].Available)
+                @Html.DisplayNameFor(m => m[0].Publisher)
                 </th>
                 <th>
-                @Html.DisplayNameFor(Model => Model[0].DateAdded)
+                @Html.DisplayNameFor(m => m[0].OriginCountry)
                 </th>
-                   @if(Model[0] != null)
-                   {
-                        @if (Model[0].Check != null)
-                        {
-                            @foreach (string s in Model[0].Check.TagNames())
-                            {
-                            <th>@s</th>
-                            }
-                        }
-                   }
+                <th>
+                @Html.DisplayNameFor(m => m[0].Genre)
+                </th>
 
                 <th>
                     Actions
@@ -42,41 +39,44 @@
         <tbody>
             @if (Model != null && Model.Any())
             {
-                @foreach (var Item in Model)
+                @foreach (LibraryItem Item in Model)
                 {
                     <tr>
-                        <td>
-                            @Html.DisplayFor(I => Item.ItemId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(I => Item.Type)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(I => Item.Genre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(I => Item.Inventory)
-                        </td>
-                        <td>
-                        @Html.DisplayFor(I => Item.Available)
-                        </td>
-                        <td>
-                        @Html.DisplayFor(I => Item.DateAdded)
-                        </td>
-                         @if (Item.Check != null)
-                        
-                            @foreach (string s in Item.Check.Tags())
-                            {
-                                <td>
-                                @s
-                                </td>
-                            }
-                        }
+                    <th>
+                        @Html.DisplayFor(m => Item.ItemId)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(m => Item.Category)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(m => Item.ItemName)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(m => Item.CreatorName)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(m => Item.Publisher)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(m => Item.OriginCountry)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(m => Item.Genre)
+                    </th>
                    
                         <td>
-                            <a  class="nav-link text-dark" class="btn btn-primary" asp-route-id="" asp-controller="Student" asp-action="Details">Details</a>
-                            <a  class="nav-link text-dark" class="btn btn-primary" asp-route-id="" asp-controller="Student" asp-action="DeleteStudent">Delete</a>
-                            <a  class="nav-link text-dark" class="btn btn-primary" asp-route-id="" asp-controller="Student" asp-action="EditStudent">Edit</a>
+                        @using (Html.BeginForm("ItemDetails", "Library", new { id = Item.ItemId }, FormMethod.Get))
+                        {
+                            <input type="submit" value="Details" />
+                        }
+                        @using (Html.BeginForm("DeleteItem", "Library", new { id = Item.ItemId }, FormMethod.Get))
+                        {
+                            <input type="submit" value="Delete" />
+                        }
+                        @using (Html.BeginForm("UpdateItem", "Library", new { id = Item.ItemId }, FormMethod.Get))
+                        {
+                            <input type="submit" value="Edit" />
+                        }
                         </td>
                     </tr>
                 }
@@ -85,7 +85,7 @@
             {
                 <tr>
                     <td colspan="4">
-                        No students are available in database.
+                        No Items currently available
                     </td>
                 </tr>
             }

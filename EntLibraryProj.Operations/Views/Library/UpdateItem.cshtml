@@ -1,0 +1,50 @@
+﻿@using EntLibraryProj.Entities
+@model LibraryItem
+
+@using (Html.BeginForm("UpdateItem", "Library", FormMethod.Post))
+{
+    @Html.Label("Item Id: " + Model.ItemId)
+    @Html.TextBoxFor(m => m.ItemId, new { @type = "hidden" })
+    <br />
+    @Html.Label("Pick Category")
+    <select asp-for="Category">
+        @foreach (ItemType Cat in Enum.GetValues(typeof(ItemType)))
+        {
+            <option value="@Cat.ToString()"> @Cat.ToString() </option>
+        }
+    </select>
+    <br />
+    @Html.Label("Item Name")
+    @Html.TextBoxFor(m => m.ItemName)
+    <br />
+    @Html.Label("Creator of Item")
+    @Html.TextBoxFor(m => m.CreatorName)
+    <br />
+    @Html.Label("Enter Publisher")
+    @Html.TextBoxFor(m => m.Publisher)
+    <br />
+    @Html.Label("Enter Country of Origin")
+    @Html.TextBoxFor(m => m.OriginCountry)
+    <br />
+    @Html.Label("Enter Item Description")
+    @Html.TextBoxFor(m => m.ItemDescription)
+    <br />
+    @Html.Label("Enter Item's Genre")
+    @Html.TextBoxFor(m => m.Genre)
+    <br />
+    @Html.Label("Enter Item Inventory")
+    @Html.TextBoxFor(m => m.Inventory, new { @type = "number" })
+    <br />
+    @Html.Label("Enter Items Available")
+    @Html.TextBoxFor(m => m.Available, new { @type = "number" })
+    <br />
+    @Html.Label("Pick date added")
+    @Html.TextBoxFor(m => m.DateAdded, new { @type = "date", @value = "2024-11-20" })
+    <br />
+    <input type="submit" class="btn btn-primary" value="Update Item" />
+}
+
+@using (Html.BeginForm("Index", "Home"))
+{
+    <input type="submit" value="Home" />
+}
