@@ -49,7 +49,7 @@ namespace EntLibraryProj.Operations.Controllers
                 }
             }
 
-            if (_libraryService.GetItem(item.ItemId) != null)
+            if (_libraryService.GetItem(item.LibItemId) != null)
             {
                 ViewBag.Status = true;
                 return View();

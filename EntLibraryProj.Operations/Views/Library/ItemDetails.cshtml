@@ -10,10 +10,10 @@
     <dl class="row">
         @* These essentially display the various field names and their data in a comprehensive view *@
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ItemId)
+            @Html.DisplayNameFor(model => model.LibItemId)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ItemId)
+            @Html.DisplayFor(model => model.LibItemId)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ItemName)
@@ -114,6 +114,6 @@
 } *@
 
 <div>
-    <a asp-action="UpdateItem" asp-route-id="@Model?.ItemId">Edit Item</a> |
+    <a asp-action="UpdateItem" asp-route-id="@Model?.LibItemId">Edit Item</a> |
     <a asp-action="ShowItems">Back to Items List</a>
 </div>

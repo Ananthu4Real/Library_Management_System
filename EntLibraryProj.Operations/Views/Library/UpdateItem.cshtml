@@ -3,8 +3,8 @@
 
 @using (Html.BeginForm("UpdateItem", "Library", FormMethod.Post))
 {
-    @Html.Label("Item Id: " + Model.ItemId)
-    @Html.TextBoxFor(m => m.ItemId, new { @type = "hidden" })
+    @Html.Label("Item Id: " + Model.LibItemId)
+    @Html.TextBoxFor(m => m.LibItemId, new { @type = "hidden" })
     <br />
     @Html.Label("Pick Category")
     <select asp-for="Category">

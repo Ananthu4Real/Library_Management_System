@@ -10,7 +10,7 @@
         <thead>
             <tr style="background-color:DarkSeaGreen;">
                 <th>
-                    @Html.DisplayNameFor(m => m[0].ItemId)
+                    @Html.DisplayNameFor(m => m[0].LibItemId)
                 </th>
                 <th>
                     @Html.DisplayNameFor(m => m[0].Category)
@@ -43,7 +43,7 @@
                 {
                     <tr>
                     <th>
-                        @Html.DisplayFor(m => Item.ItemId)
+                        @Html.DisplayFor(m => Item.LibItemId)
                     </th>
                     <th>
                         @Html.DisplayFor(m => Item.Category)
@@ -65,15 +65,15 @@
                     </th>
                    
                         <td>
-                        @using (Html.BeginForm("ItemDetails", "Library", new { id = Item.ItemId }, FormMethod.Get))
+                        @using (Html.BeginForm("ItemDetails", "Library", new { id = Item.LibItemId }, FormMethod.Get))
                         {
                             <input type="submit" value="Details" />
                         }
-                        @using (Html.BeginForm("DeleteItem", "Library", new { id = Item.ItemId }, FormMethod.Get))
+                        @using (Html.BeginForm("DeleteItem", "Library", new { id = Item.LibItemId }, FormMethod.Get))
                         {
                             <input type="submit" value="Delete" />
                         }
-                        @using (Html.BeginForm("UpdateItem", "Library", new { id = Item.ItemId }, FormMethod.Get))
+                        @using (Html.BeginForm("UpdateItem", "Library", new { id = Item.LibItemId }, FormMethod.Get))
                         {
                             <input type="submit" value="Edit" />
                         }

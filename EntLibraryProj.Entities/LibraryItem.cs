@@ -7,7 +7,7 @@ namespace EntLibraryProj.Entities
     public class LibraryItem
     {
         [Key]
-        public int ItemId { get; set; }
+        public int LibItemId { get; set; }
         //[Required(ErrorMessage = "Must Choose")]
         //[Range(1,9)]
         [ForeignKey("Category")]

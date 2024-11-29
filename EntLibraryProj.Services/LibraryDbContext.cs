@@ -36,7 +36,7 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
         modelBuilder.Entity<LibraryItem>().HasData(
             new LibraryItem
             {
-                ItemId = 1,
+                LibItemId = 1,
                 CategoryId = 1,
                 ItemName = "The Hobbit",
                 CreatorName = "J.R.R. Tolkien",
@@ -52,7 +52,7 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
 
             new LibraryItem
             {
-                ItemId = 2,
+                LibItemId = 2,
                 CategoryId = 2,
                 ItemName = "Star Wars Episode 1: The Phantom Menace",
                 CreatorName = "George Lucas",
@@ -67,7 +67,7 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
             },
             new LibraryItem
             {
-                ItemId = 3,
+                LibItemId = 3,
                 CategoryId = 2,
                 ItemName = "Star Wars Episode 2: The Attack of the Clones",
                 CreatorName = "George Lucas",
@@ -82,7 +82,7 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
             },
             new LibraryItem
             {
-                ItemId = 4,
+                LibItemId = 4,
                 CategoryId = 2,
                 ItemName = "Star Wars Episode 3: The Revenge of the Sith",
                 CreatorName = "George Lucas",
@@ -97,7 +97,7 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
             },
             new LibraryItem
             {
-                ItemId = 5,
+                LibItemId = 5,
                 CategoryId = 2,
                 ItemName = "Scarface",
                 CreatorName = "Brian De Palma",
@@ -112,7 +112,7 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
             },
             new LibraryItem
             {
-                ItemId = 6,
+                LibItemId = 6,
                 CategoryId = 3,
                 ItemName = "The Hobbit",
                 CreatorName = "J.R.R. Tolkien",
@@ -127,7 +127,7 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
             },
             new LibraryItem
             {
-                ItemId = 7,
+                LibItemId = 7,
                 CategoryId = 1,
                 ItemName = "The Lord of The Rings Complete Novel",
                 CreatorName = "J.R.R. Tolkien",
@@ -142,7 +142,7 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
             },
             new LibraryItem
             {
-                ItemId = 8,
+                LibItemId = 8,
                 CategoryId = 4,
                 ItemName = "Dark Souls",
                 CreatorName = "Hidetaka Miyazaki/From Software",
@@ -157,7 +157,7 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
             },
             new LibraryItem
             {
-                ItemId = 9,
+                LibItemId = 9,
                 CategoryId = 4,
                 ItemName = "Super Mario Odyssey",
                 CreatorName = "Nintendo",
@@ -172,7 +172,7 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
             },
             new LibraryItem
             {
-                ItemId = 10,
+                LibItemId = 10,
                 CategoryId = 5,
                 ItemName = "The Dark Side of the Moon",
                 CreatorName = "Pink Floyd",
@@ -187,7 +187,7 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
             },
             new LibraryItem
             {
-                ItemId = 11,
+                LibItemId = 11,
                 CategoryId = 6,
                 ItemName = "Visual Paradigm",
                 CreatorName = "Visual Paradigm",
@@ -202,7 +202,7 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
             },
             new LibraryItem
             {
-                ItemId = 12,
+                LibItemId = 12,
                 CategoryId = 7,
                 ItemName = "The past, present, and future of software evolution",
                 CreatorName = "Michael W. Godfrey; Daniel M. German",
@@ -217,7 +217,7 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
             },
             new LibraryItem
             {
-                ItemId = 13,
+                LibItemId = 13,
                 CategoryId = 8,
                 ItemName = "Freedom",
                 CreatorName = "Laphams Quarterly",
@@ -232,7 +232,7 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
             },
             new LibraryItem
             {
-                ItemId = 14,
+                LibItemId = 14,
                 CategoryId = 8,
                 ItemName = "The Glory that is Rome",
                 CreatorName = "Tony Perrottet",
@@ -247,7 +247,7 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
             },
             new LibraryItem
             {
-                ItemId = 15,
+                LibItemId = 15,
                 CategoryId = 9,
                 ItemName = "PEACE! IT'S OVER",
                 CreatorName = "The Charlotte Observer",
@@ -262,7 +262,7 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
             },
             new LibraryItem
             {
-                ItemId = 15,
+                LibItemId = 15,
                 CategoryId = 1,
                 ItemName = "Les Miserables",
                 CreatorName = "Liam Neeson",

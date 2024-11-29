@@ -44,7 +44,7 @@ namespace EntLibraryProj.Services
 
         public void UpdateItem(LibraryItem item)
         {
-            LibraryItem? L = GetItem(item.ItemId);
+            LibraryItem? L = GetItem(item.LibItemId);
             if (L == null) { return; }
             L.ItemName = item.ItemName;
             L.CreatorName = item.CreatorName;

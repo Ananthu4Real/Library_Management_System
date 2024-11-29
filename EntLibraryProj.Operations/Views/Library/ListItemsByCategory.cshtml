@@ -30,7 +30,7 @@
                     @Html.DisplayNameFor(Model => Model[0].ItemName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(Model => Model[0].ItemId)
+                    @Html.DisplayNameFor(Model => Model[0].LibItemId)
                 </th>
                 <th>
                     @Html.DisplayNameFor(Model => Model[0].CreatorName)
@@ -47,7 +47,7 @@
             {
                 @foreach (var item in Model)
                 {
-                    @if (item.ItemId.ToString() == ViewBag.SelectedCategory)
+                    @if (item.LibItemId.ToString() == ViewBag.SelectedCategory)
                     {
                         <tr>
                             <td>
@@ -57,7 +57,7 @@
                                 @Html.DisplayFor(e => item.ItemName)
                             </td>
                             <td>
-                                @Html.DisplayFor(e => item.ItemId)
+                                @Html.DisplayFor(e => item.LibItemId)
                             </td>
                             <td>
                                 @Html.DisplayFor(e => item.CreatorName)
@@ -77,7 +77,7 @@
                                 @Html.DisplayFor(e => item.ItemName)
                             </td>
                             <td>
-                                @Html.DisplayFor(e => item.ItemId)
+                                @Html.DisplayFor(e => item.LibItemId)
                             </td>
                             <td>
                                 @Html.DisplayFor(e => item.CreatorName)

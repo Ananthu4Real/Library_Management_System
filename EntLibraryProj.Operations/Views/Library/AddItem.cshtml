@@ -7,7 +7,7 @@
 @using (Html.BeginForm("AddItem", "Library", FormMethod.Post))
 {
     @Html.Label("Enter Item Id")
-    @Html.TextBoxFor(m => m.ItemId, new { @type = "number" })
+    @Html.TextBoxFor(m => m.LibItemId, new { @type = "number" })
     <br />
     @Html.Label("Select a category: ")
     @Html.DropDownListFor(e => e.CategoryId, (IEnumerable<SelectListItem>)ViewBag.CategoryId, "Select Category")
