@@ -56,6 +56,7 @@ namespace EntLibraryProj.Services
             L.Inventory = item.Inventory;
             L.Available = item.Available;
             L.DateAdded = item.DateAdded;
+            L.DateCreated = item.DateCreated;
             _context.SaveChanges();
         }
     }

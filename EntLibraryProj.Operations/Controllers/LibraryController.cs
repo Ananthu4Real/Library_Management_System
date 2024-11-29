@@ -32,8 +32,8 @@ namespace EntLibraryProj.Operations.Controllers
                 ViewBag.Status = true;
                 return View();
             }
-            item.Available = item.Inventory; //available = inventory
-            item.DateAdded = DateOnly.FromDateTime(DateTime.Now); //today
+            //item.Available = item.Inventory; //available = inventory
+            //item.DateAdded = DateOnly.FromDateTime(DateTime.Now); //today
             _libraryService.AddItem(item);
             return RedirectToAction("ShowItems");
         }
