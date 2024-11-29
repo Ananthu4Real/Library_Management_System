@@ -1,7 +1,78 @@
 ﻿@using EntLibraryProj.Entities
 @model LibraryItem
+@{
+    ViewData["Title"] = "Details";
+}
+<h1>Details</h1>
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="row">
+        @* These essentially display the various field names and their data in a comprehensive view *@
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ItemId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ItemId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ItemName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ItemName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatorName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreatorName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Publisher)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Publisher)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OriginCountry)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OriginCountry)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ItemDescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ItemDescription)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateAdded)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateAdded)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Inventory)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Inventory)
+        </dd>
 
-@using (Html.BeginForm("ShowItems", "Library", FormMethod.Get))
+    </dl>
+</div>
+@* @using (Html.BeginForm("ShowItems", "Library", FormMethod.Get))
 {
     @Html.Label("Id:  ")
     @Html.Label(Model.ItemId.ToString())
@@ -33,14 +104,16 @@
     @Html.Label("Available:  ")
     @Html.Label(Model.Available.ToString())
     <br />
-    @Html.Label("Date Added:  ")
-    @Html.Label(Model.DateAdded.ToString())
+    @Html.Label("Date Added to Library:  ")
+    @Html.Label(Model.DateAdded)
+    <br />
+    @Html.Label("Date Item was created:  ")
+    @Html.Label(Model.DateCreated)
     <br />
     <input type="submit" class="btn btn-primary" value="Back" />
-}
+} *@
 
-@using (Html.BeginForm("Index", "Home"))
-{
-    <input type="submit" value="Home" />
-}
-
+<div>
+    <a asp-action="UpdateItem" asp-route-id="@Model?.ItemId">Edit Item</a> |
+    <a asp-action="ShowItems">Back to Items List</a>
+</div>

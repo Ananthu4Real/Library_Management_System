@@ -1,0 +1,112 @@
+﻿@model List<EntLibraryProj.Entities.LibraryItem>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "ItemByCreationDateSearch";
+}
+
+@using (Html.BeginForm("ItemByCreationDateSearch", "LibraryItem", FormMethod.Get))
+{
+    @Html.Label("Enter a date: ")
+    //(IEnumerable<SelectListItem>)ViewBag.Departments,
+    @Html.TextBox("ChosenDate", "{0:yyyy-MM-dd}", new { type = "date" })
+    <input type="submit" value="Enter Date Search" class="btn btn-primary" />
+}
+
+<br />
+<h2></h2>
+<br />
+<h1>Select Items by Date of Creation</h1>
+<div class="text-center">
+    <h1 class="display-4">List of Items</h1>
+    <table border=1 class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(Model => Model[0].DateCreated)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(Model => Model[0].Category.CategoryName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(Model => Model[0].ItemName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(Model => Model[0].ItemId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(Model => Model[0].CreatorName)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(Model => Model[0].Genre)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    @if (item.ItemId.ToString() == ViewBag.SelectedCategory)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(e => item.DateCreated)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(e => item.Category.CategoryName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(e => item.ItemName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(e => item.ItemId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(e => item.CreatorName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(e => item.Genre)
+                            </td>
+                        </tr>
+                    }
+                    else if (String.IsNullOrEmpty(ViewBag.SelectedCategory) == true)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(e => item.DateCreated)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(e => item.Category.CategoryName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(e => item.ItemName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(e => item.ItemId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(e => item.CreatorName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(e => item.Genre)
+                            </td>
+                        </tr>
+                    }
+
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4">
+                        No item available in database.
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
