@@ -71,6 +71,17 @@ namespace EntLibraryProj.Operations.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            [Length(7,15)]
+            [Required(ErrorMessage = "Must be between 7 and 15")]
+            public int LibraryCardNum { get; set; }
+            [Required(ErrorMessage = "Name can't be empty.")] // Validaiton attribute 'Required'
+            [StringLength(50, ErrorMessage = "Name length is 1 - 50", MinimumLength = 1)] //max length of 50
+            [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")] //This regex should make it so no digits are included. 
+            public string? FirstName { get; set; }
+            [Required(ErrorMessage = "Name can't be empty.")] // Validaiton attribute 'Required'
+            [StringLength(50, ErrorMessage = "Name length is 1 - 50", MinimumLength = 1)] //max length of 50
+            [RegularExpression(@"^[A-Z][a-z]+([-'\s][A-Z][a-z]+)?$")] //This regex should make it so no digits are included. 
+            public string? LastName { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -114,7 +125,8 @@ namespace EntLibraryProj.Operations.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-
+                //Add last name, first name, library card number
+                user.FirstName = Input.FirstName; user.LastName = Input.LastName; user.LibraryCardNum = Input.LibraryCardNum;
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);

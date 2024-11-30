@@ -12,5 +12,6 @@ public class LibraryUser : IdentityUser
     public int LibraryCardNum { get; set; }
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
+
 }
 
