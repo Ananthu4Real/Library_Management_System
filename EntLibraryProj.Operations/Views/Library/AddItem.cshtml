@@ -19,34 +19,34 @@
         }
     </select> *@
     <br />
-    @Html.Label("Item Name")
+    @Html.Label("Item Name: ")
     @Html.TextBoxFor(m => m.ItemName)
     <br />
-    @Html.Label("Creator of Item")
+    @Html.Label("Creator of Item: ")
     @Html.TextBoxFor(m => m.CreatorName)
     <br />
-    @Html.Label("Enter Publisher")
+    @Html.Label("Enter Publisher: ")
     @Html.TextBoxFor(m => m.Publisher)
     <br />
-    @Html.Label("Enter Country of Origin")
+    @Html.Label("Enter Country of Origin: ")
     @Html.TextBoxFor(m => m.OriginCountry)
     <br />
-    @Html.Label("Enter Item Description")
+    @Html.Label("Enter Item Description: ")
     @Html.TextBoxFor(m => m.ItemDescription)
     <br />
-    @Html.Label("Enter Item's Genre")
+    @Html.Label("Enter Item's Genre: ")
     @Html.TextBoxFor(m => m.Genre)
     <br />
-    @Html.Label("Enter Item Inventory")
+    @Html.Label("Enter Item Inventory: ")
     @Html.TextBoxFor(m => m.Inventory, new { @type = "number" })
     <br />
-    @Html.Label("Enter Item's Image URL")
+    @Html.Label("Enter Item's Image URL: ")
     @Html.TextBoxFor(m => m.ImageURL)
     <br />
-    @Html.Label("Enter Date Added")
+    @Html.Label("Enter Date Added: ")
     @Html.TextBoxFor(m => m.DateAdded, "{0:yyyy-MM-dd}", new { type = "date" })
     <br />
-    @Html.Label("Enter Date of Creation")
+    @Html.Label("Enter Date of Creation: ")
     @Html.TextBoxFor(m => m.DateCreated, "{0:yyyy-MM-dd}", new { type = "date" })
     <br />
     <input type="submit" class="btn btn-primary" value="Create" />

@@ -61,7 +61,7 @@ namespace EntLibraryProj.Operations.Controllers
             _libraryService.AddItem(item);
             return RedirectToAction("ShowItems");
         }
-
+        [Authorize(Roles = "Admin")]
         [Route("[action]")]
         [HttpGet]
         public IActionResult DeleteItem(int id) 

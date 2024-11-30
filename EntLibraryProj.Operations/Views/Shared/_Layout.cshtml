@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EntLibraryProj.Operations</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -20,28 +20,28 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Library" asp-action="ShowItems">Show Items</a>
+                            <a class="nav-link text-light" asp-controller="Library" asp-action="ShowItems">Show Items</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Library" asp-action="AddItem">Create Library Item</a>
+                            <a class="nav-link text-light" asp-controller="Library" asp-action="AddItem">Create Library Item</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Library" asp-action="ItemByCreationDateSearch">View by Date of Creation</a>
+                            <a class="nav-link text-light" asp-controller="Library" asp-action="ItemByCreationDateSearch">View by Date of Creation</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Library" asp-action="ListItemsByCategory">View by Category</a>
+                            <a class="nav-link text-light" asp-controller="Library" asp-action="ListItemsByCategory">View by Category</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Admin" asp-action="AddUserToRole">Admin -  Add User To Role</a>
+                            <a class="nav-link text-light" asp-controller="Admin" asp-action="AddUserToRole">Admin -  Add User To Role</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Admin" asp-action="CreateRole">Admin -  Create Role</a>
+                            <a class="nav-link text-light" asp-controller="Admin" asp-action="CreateRole">Admin -  Create Role</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Admin" asp-action="ListRoles">Admin -  List Roles</a>
+                            <a class="nav-link text-light" asp-controller="Admin" asp-action="ListRoles">Admin -  List Roles</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
