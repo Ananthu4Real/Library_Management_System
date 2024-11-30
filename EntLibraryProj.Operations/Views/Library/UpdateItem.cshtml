@@ -6,13 +6,9 @@
     @Html.Label("Item Id: " + Model.LibItemId)
     @Html.TextBoxFor(m => m.LibItemId, new { @type = "hidden" })
     <br />
-    @Html.Label("Pick Category")
-    <select asp-for="Category">
-        @foreach (ItemType Cat in Enum.GetValues(typeof(ItemType)))
-        {
-            <option value="@Cat.ToString()"> @Cat.ToString() </option>
-        }
-    </select>
+    @Html.Label("Select a category: ")
+    @Html.DropDownListFor(e => e.CategoryId, (IEnumerable<SelectListItem>)ViewBag.CategoryId, "Select Category")
+
     <br />
     @Html.Label("Item Name")
     @Html.TextBoxFor(m => m.ItemName)

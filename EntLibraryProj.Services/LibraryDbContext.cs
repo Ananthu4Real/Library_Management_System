@@ -1,13 +1,14 @@
 ﻿using EntLibraryProj.Entities;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EntLibraryProj.Services;
 public class LibraryDbContext : IdentityDbContext<LibraryUser>
 {
-    public LibraryDbContext(DbContextOptions<LibraryDbContext> options) : base(options) { }
+    public LibraryDbContext(DbContextOptions<LibraryDbContext> options) 
+        : base(options) { }
 
     public DbSet<LibraryItem> LibraryItems { get; set; }
     public DbSet<Category> CategoryInfo { get; set; }
@@ -262,7 +263,7 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
             },
             new LibraryItem
             {
-                LibItemId = 15,
+                LibItemId = 16,
                 CategoryId = 1,
                 ItemName = "Les Miserables",
                 CreatorName = "Liam Neeson",
@@ -280,14 +281,15 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
     }
-}
 
-internal class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<LibraryUser>
-{
-    public void Configure(EntityTypeBuilder<LibraryUser> builder)
+    internal class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<LibraryUser>
     {
-        builder.Property(u => u.FirstName).HasMaxLength(255);
-        builder.Property(u => u.LastName).HasMaxLength(255);
-        builder.Property(u => u.LibraryCardNum).HasMaxLength(10);
+        public void Configure(EntityTypeBuilder<LibraryUser> builder)
+        {
+            builder.Property(u => u.FirstName).HasMaxLength(255);
+            builder.Property(u => u.LastName).HasMaxLength(255);
+            builder.Property(u => u.LibraryCardNum).HasMaxLength(10);
+        }
     }
 }
+

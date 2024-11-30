@@ -32,17 +32,17 @@ namespace EntLibraryProj.Entities
     public virtual Category CategoryName { get; set; }
     */
 
-    public enum ItemType
-    {
-        Book,
-        Movie,
-        Audiobook,
-        VideoProgram,
-        VideoGame,
-        Music,
-        Software,
-        ResearchPaper,
-        Magazine,
-        Newspaper
-    }
+    //public enum ItemType
+    //{
+    //    Book,
+    //    Movie,
+    //    Audiobook,
+    //    VideoProgram,
+    //    VideoGame,
+    //    Music,
+    //    Software,
+    //    ResearchPaper,
+    //    Magazine,
+    //    Newspaper
+    //}
 }

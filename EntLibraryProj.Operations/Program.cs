@@ -1,22 +1,21 @@
 using EntLibraryProj.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
 using EntLibraryProj.Entities;
 
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("SQLite") ?? throw new InvalidOperationException("Connection string 'LibraryDbContext' not found.");
+//var connectionString = builder.Configuration.GetConnectionString("SQLiteConn");// ?? throw new InvalidOperationException("Connection string 'LibraryDbContext' not found.");
 
+builder.Services.AddDbContext<LibraryDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConn")));
+builder.Services.AddDefaultIdentity<LibraryUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<LibraryDbContext>();
 
 // Add services to the container.
 //builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ILibraryService, LibraryRepo>();
-builder.Services.AddDbContext<LibraryDbContext>(option => option.UseSqlite(connectionString));
-
-builder.Services.AddDefaultIdentity<LibraryUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<LibraryDbContext>();
+builder.Services.AddScoped<ICategoryServices, CategoryRepository>();
 
 builder.Services.AddControllersWithViews();
 
