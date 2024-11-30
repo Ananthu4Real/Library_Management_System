@@ -17,7 +17,7 @@ namespace EntLibraryProj.Services
             _context = context;
         }
 
-        public void AddItem(string uname, int itemID)
+        public void AddLibItem(string uname, int itemID)
         {
             LibraryUser? user = GetLibraryUser(uname);
             if (user == null) { return; }
@@ -30,6 +30,20 @@ namespace EntLibraryProj.Services
         {
             LibraryUser? user = _context.UserTable.Include("Item").ToList().Where(e => e.UserName == uname).FirstOrDefault();
             return user;
+        }
+
+        public List<LibraryUser> GetUsers()
+        {
+            List<LibraryUser> users = _context.UserTable.Include("Item").ToList();
+            return users;
+        }
+        public string GetRole(string item)
+        {
+            Microsoft.AspNetCore.Identity.IdentityUserRole<string> role = _context.UserRoles.Where(e => e.UserId == item).FirstOrDefault();
+            string roleid = role.RoleId;
+
+            string name = _context.Roles.Where(e=>e.Id == roleid).FirstOrDefault().Name;
+            return name;
         }
     }
 }

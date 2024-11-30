@@ -1,0 +1,64 @@
+﻿@using EntLibraryProj.Entities
+@model ShowUserView
+
+@using (Html.BeginForm("AddItem", "Library", FormMethod.Get))
+{
+    <input type="submit" value="Create Library Item" />
+}
+<div>
+    <table border=1 class="table table-striped">
+        <thead>
+            <tr style="background-color:DarkSeaGreen;">
+                <th>
+                    @Html.DisplayNameFor(m => m.LibraryUsers[0].FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.LibraryUsers[0].LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.LibraryUsers[0].UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.LibraryUsers[0].LibraryCardNum)
+                </th>
+                <th>
+                    @Html.Label(Model.Roles[0])
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.LibraryUsers.Any())
+            {
+                @for (int i = 0; i<Model.LibraryUsers.Count; i++)
+                {
+                    <tr>
+                        <th>
+                            @Html.DisplayFor(m => Model.LibraryUsers[i].FirstName)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(m => Model.LibraryUsers[i].LastName)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(m => Model.LibraryUsers[i].UserName)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(m => Model.LibraryUsers[i].LibraryCardNum)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(m => Model.Roles[0])
+                        </th>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4">
+                        No Items currently available
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

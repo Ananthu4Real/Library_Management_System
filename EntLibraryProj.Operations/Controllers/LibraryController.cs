@@ -182,7 +182,7 @@ namespace EntLibraryProj.Operations.Controllers
         {
             string name = User.Identity.Name;
             _libraryService.CheckOutBook(id);
-            _userService.AddItem(name, id);
+            _userService.AddLibItem(name, id);
             return RedirectToAction(nameof(ShowItems));
         }
 

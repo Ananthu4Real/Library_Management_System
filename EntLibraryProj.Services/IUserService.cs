@@ -10,6 +10,9 @@ namespace EntLibraryProj.Services
     public interface IUserService
     {
         LibraryUser? GetLibraryUser(string uname);
-        void AddItem(string uname, int itemID);
+        void AddLibItem(string uname, int itemID);
+
+        List<LibraryUser> GetUsers();
+        string GetRole(string item);
     }
 }
