@@ -1,0 +1,44 @@
+@model IEnumerable<EntLibraryProj.Models.FAQModel> // Model is a list of FAQModel
+@{
+    ViewData["Title"] = "Frequently Asked Questions";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/faq.css" asp-append-version="true">
+</head>
+<body>
+    <div class="faq-container">
+        <h1>Frequently Asked Questions</h1>
+        @foreach (var faq in Model)
+        {
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <span>@faq.Question</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    @faq.Answer
+                </div>
+            </div>
+        }
+    </div>
+    <script>
+        function toggleAnswer(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector(".toggle-icon");
+            if (answer.style.display === "block") {
+                answer.style.display = "none";
+                icon.textContent = "+";
+            } else {
+                answer.style.display = "block";
+                icon.textContent = "-";
+            }
+        }
+    </script>
+</body>
+</html>
