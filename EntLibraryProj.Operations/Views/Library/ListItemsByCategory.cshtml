@@ -6,11 +6,11 @@
     ViewBag.Title = "ListItemsByCategory";
 }
 
-@using (Html.BeginForm("ListItemsByCategory", "LibraryItem", FormMethod.Get))
+@using (Html.BeginForm("ListItemsByCategory", "Library", FormMethod.Get))
 {
     @Html.Label("Select an item: ")
     //(IEnumerable<SelectListItem>)ViewBag.Departments,
-    @Html.DropDownList("Category")
+    @Html.DropDownList("CategoryType")
     <input type="submit" value="ListItemsByCategory" class="btn btn-primary" />
 }
 
@@ -47,7 +47,7 @@
             {
                 @foreach (var item in Model)
                 {
-                    @if (item.LibItemId.ToString() == ViewBag.SelectedCategory)
+                    @if (item.CategoryId.ToString() == ViewBag.SelectedCategory)
                     {
                         <tr>
                             <td>

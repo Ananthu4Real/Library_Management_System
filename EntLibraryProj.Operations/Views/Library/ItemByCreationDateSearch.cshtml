@@ -6,7 +6,7 @@
     ViewBag.Title = "ItemByCreationDateSearch";
 }
 
-@using (Html.BeginForm("ItemByCreationDateSearch", "LibraryItem", FormMethod.Get))
+@using (Html.BeginForm("ItemByCreationDateSearch", "Library", FormMethod.Get))
 {
     @Html.Label("Enter a date: ")
     //(IEnumerable<SelectListItem>)ViewBag.Departments,
@@ -50,7 +50,7 @@
             {
                 @foreach (var item in Model)
                 {
-                    @if (item.LibItemId.ToString() == ViewBag.SelectedCategory)
+                    @if (item.CategoryId.ToString() == ViewBag.SelectedCategory)
                     {
                         <tr>
                             <td>

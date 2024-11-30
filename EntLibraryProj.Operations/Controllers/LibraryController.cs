@@ -135,7 +135,7 @@ namespace EntLibraryProj.Operations.Controllers
             }
 
             //Add the list of cats (SelectListItem type) as a property of ViewBag, and the selected id below, for use on the view for filtering by department
-            ViewBag.Category = listOfCategories;
+            ViewBag.CategoryType = listOfCategories;
 
             ViewBag.SelectedCategory = i.ToString();
             return View(_libraryService.GetItems());

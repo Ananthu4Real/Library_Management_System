@@ -39,12 +39,13 @@
     <br />
     @Html.Label("Enter Item Inventory")
     @Html.TextBoxFor(m => m.Inventory, new { @type = "number" })
+    <br />
     @Html.Label("Enter Item's Image URL")
     @Html.TextBoxFor(m => m.ImageURL)
-
+    <br />
     @Html.Label("Enter Date Added")
     @Html.TextBoxFor(m => m.DateAdded, "{0:yyyy-MM-dd}", new { type = "date" })
-
+    <br />
     @Html.Label("Enter Date of Creation")
     @Html.TextBoxFor(m => m.DateCreated, "{0:yyyy-MM-dd}", new { type = "date" })
     <br />
