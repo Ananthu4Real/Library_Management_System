@@ -25,6 +25,16 @@ namespace EntLibraryProj.Services
             _context.SaveChanges();
 
         }
+        public void RemoveLibItem(string uname, int itemID)
+        {
+            LibraryUser? user = GetLibraryUser(uname);
+            if (user == null) { return; }
+            if (user.itemId == itemID)
+            {
+                user.itemId = null;
+                _context.SaveChanges();
+            }
+        }
 
         public LibraryUser? GetLibraryUser(string uname)
         {
@@ -37,12 +47,14 @@ namespace EntLibraryProj.Services
             List<LibraryUser> users = _context.UserTable.Include("Item").ToList();
             return users;
         }
-        public string GetRole(string item)
+        public string GetRole(string item) //Get A role with specific userID
         {
-            Microsoft.AspNetCore.Identity.IdentityUserRole<string> role = _context.UserRoles.Where(e => e.UserId == item).FirstOrDefault();
+            Microsoft.AspNetCore.Identity.IdentityUserRole<string>? role = _context.UserRoles.Where(e => e.UserId == item).FirstOrDefault(); //Get Role ID Connected to user
+            if(role == null) { return "ERROR"; }
             string roleid = role.RoleId;
 
-            string name = _context.Roles.Where(e=>e.Id == roleid).FirstOrDefault().Name;
+            string? name = _context.Roles.Where(e=>e.Id == roleid).FirstOrDefault()?.Name; //GetRoleName With Id
+            if (name == null) { return "Error"; }
             return name;
         }
     }

@@ -64,11 +64,15 @@ namespace EntLibraryProj.Operations.Controllers
             return RedirectToAction("ShowItems");
         }
         [Authorize(Roles = "Admin")]
-        [Route("[action]")]
+        [Route("[action]/{id}")]
         [HttpGet]
         public IActionResult DeleteItem(int id) 
         {
             LibraryItem? item = _libraryService.GetItem(id);
+            foreach(LibraryUser user in _userService.GetUsers())
+            {
+                _userService.RemoveLibItem(user.UserName, id);
+            }
             if (item == null) { return RedirectToAction("ShowItems"); }
             _libraryService.DeleteItem(id);
             return RedirectToAction("ShowItems");
@@ -86,7 +90,7 @@ namespace EntLibraryProj.Operations.Controllers
             return View(item);
         }
 
-        [Route("[action]")]
+        [Route("[action]/{id}")]
         [HttpGet]
         public IActionResult UpdateItem(int id)
         {
@@ -193,7 +197,8 @@ namespace EntLibraryProj.Operations.Controllers
         {
             string name = User.Identity.Name;
             LibraryUser user = _userService.GetLibraryUser(name);
-            int item = (int)user.itemId;
+            int? item = user.itemId;
+            if (item == null) { return RedirectToAction("Index", "Home"); }
             return RedirectToAction("ItemDetails", new {id = item});
         }
     }

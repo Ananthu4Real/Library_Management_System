@@ -1,4 +1,5 @@
 ﻿using EntLibraryProj.Entities;
+using NuGet.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace EntLibraryProj.Services
     {
         LibraryUser? GetLibraryUser(string uname);
         void AddLibItem(string uname, int itemID);
+        void RemoveLibItem(string uname, int itemID);
 
         List<LibraryUser> GetUsers();
         string GetRole(string item);
