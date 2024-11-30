@@ -18,7 +18,7 @@
                     @Html.DisplayNameFor(m => m.LibraryUsers[0].LibraryCardNum)
                 </th>
                 <th>
-                    @Html.Label(Model.Roles[0])
+                    @Html.Label("Roles")
                 </th>
             </tr>
         </thead>
@@ -41,7 +41,7 @@
                             @Html.DisplayFor(m => Model.LibraryUsers[i].LibraryCardNum)
                         </th>
                         <th>
-                            @Html.DisplayFor(m => Model.Roles[0])
+                            @Html.DisplayFor(m => Model.Roles[i])
                         </th>
                     </tr>
                 }
