@@ -5,7 +5,7 @@
 
 <h1> Add User To Role</h1>
 @ViewBag.AddUserRoleMessage
-@using (Html.BeginForm("AddUserToRole", "Admin"))
+@using (Html.BeginForm("AddUserToRole", "Admin", FormMethod.Post))
 {
     @*     @Html.ValidationSummary("Validation Summary",new {@class = "text-danger"})
  *@

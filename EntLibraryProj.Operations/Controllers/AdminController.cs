@@ -13,7 +13,7 @@ namespace EntLibraryProj.Operations.Controllers
         public AdminController(RoleManager<IdentityRole> roleManager, UserManager<LibraryUser> userManager)
         {
             this.roleManager = roleManager;
-            this.userManager = userManager;
+            this.userManager = userManager;;
         }
 
         [Route("[action]")]
@@ -57,14 +57,16 @@ namespace EntLibraryProj.Operations.Controllers
         }
 
 
-        [Route("[action]")]
+
         [HttpGet]
+        [Route("[action]")]
         public IActionResult AddUserToRole()
         {
             return View();
         }
-        [Route("[action]")]
+
         [HttpPost]
+        [Route("[action]")]
         public async Task<IActionResult> AddUserToRole(AddUserRoleViewModel addUserRoleViewModel)
         {
             var role = await roleManager.FindByNameAsync(addUserRoleViewModel.RoleName);
@@ -75,6 +77,10 @@ namespace EntLibraryProj.Operations.Controllers
                 await userManager.AddToRoleAsync(user, role.Name);
                 ViewBag.AddUserRoleMessage = "Success! User Added to Role.";
 
+            }
+            else
+            {
+                ViewBag.AddUserRoleMessage = "Problem: make sure you use email";
             }
             return View();
         }

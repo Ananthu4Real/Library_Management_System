@@ -2,6 +2,7 @@
 @model LibraryItem
 @{
     ViewData["Title"] = "Details";
+    ViewData["Id"] = Model.LibItemId;
 }
 <h1>Details</h1>
 <div>
@@ -114,6 +115,7 @@
 } *@
 
 <div>
+    <a asp-action="CheckOutBook" asp-route-id="@Model?.LibItemId">Check Out</a>
     <a asp-action="UpdateItem" asp-route-id="@Model?.LibItemId">Edit Item</a> |
     <a asp-action="ShowItems">Back to Items List</a>
 </div>

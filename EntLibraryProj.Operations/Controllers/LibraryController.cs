@@ -13,12 +13,14 @@ namespace EntLibraryProj.Operations.Controllers
     {
         private ILibraryService _libraryService;
         private ICategoryServices _categoryService;
+        private IUserService _userService;
         List<SelectListItem> _selectListItemListOfCats;
 
-        public LibraryController(ILibraryService libraryService, ICategoryServices categoryService)
+        public LibraryController(ILibraryService libraryService, ICategoryServices categoryService, IUserService userService)
         {
             _libraryService = libraryService;
             _categoryService = categoryService;
+            _userService = userService;
             _selectListItemListOfCats = ModelActions.CreateSelectListItemListForCategories(_categoryService.ListCategory().ToList());
         }
         [Route("[action]")]
@@ -72,8 +74,8 @@ namespace EntLibraryProj.Operations.Controllers
             return RedirectToAction("ShowItems");
         }
 
-        [Authorize(Roles = "Admin, User, Standard")]
-        [Route("[action]")]
+        [Authorize]
+        [Route("[action]/{id}")]
         [HttpGet]
         public IActionResult ItemDetails(int? id)
         {
@@ -173,6 +175,26 @@ namespace EntLibraryProj.Operations.Controllers
             {
                 return View(_libraryService.GetItems());
             }
+        }
+        [Authorize]
+        [Route("[action]/{id}")]
+        public IActionResult CheckOutBook(int id)
+        {
+            string name = User.Identity.Name;
+            _libraryService.CheckOutBook(id);
+            _userService.AddItem(name, id);
+            return RedirectToAction(nameof(ShowItems));
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("[action]")]
+        public IActionResult CheckedOut()
+        {
+            string name = User.Identity.Name;
+            LibraryUser user = _userService.GetLibraryUser(name);
+            int item = (int)user.itemId;
+            return RedirectToAction("ItemDetails", new {id = item});
         }
     }
 }
