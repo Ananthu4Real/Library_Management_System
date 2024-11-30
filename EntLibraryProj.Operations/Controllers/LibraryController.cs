@@ -1,6 +1,7 @@
 ﻿using EntLibraryProj.Entities;
 using EntLibraryProj.Operations.Models;
 using EntLibraryProj.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Globalization;
@@ -71,7 +72,7 @@ namespace EntLibraryProj.Operations.Controllers
             return RedirectToAction("ShowItems");
         }
 
-
+        [Authorize(Roles = "Admin, User, Standard")]
         [Route("[action]")]
         [HttpGet]
         public IActionResult ItemDetails(int? id)
