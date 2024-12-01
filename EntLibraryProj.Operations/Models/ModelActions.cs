@@ -7,7 +7,7 @@ namespace EntLibraryProj.Operations.Models
     {
         public static List<SelectListItem> CreateSelectListItemListForCategories(List<Category> categories)
         {
-            //Converts list of departments into a list of SelectListItem type, for dropdown list
+            //Converts list of categories into a list of SelectListItem type, for dropdown list
             List<SelectListItem> listOfCategories = new List<SelectListItem>();
             foreach (var cat in categories)
             {
@@ -17,6 +17,7 @@ namespace EntLibraryProj.Operations.Models
                     Value = cat.CategoryId.ToString()
                 });
             }
+            //returns the categories list of Select List Item objects 
             return listOfCategories;
         }
     }

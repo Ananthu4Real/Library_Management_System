@@ -6,12 +6,14 @@
 }
 @using (Html.BeginForm("AddItem", "Library", FormMethod.Post))
 {
-    @Html.Label("Enter Item Id")
+    @Html.Label("Enter Item Id: ")
     @Html.TextBoxFor(m => m.LibItemId, new { @type = "number" })
+    @Html.ValidationMessageFor(m => m.LibItemId, "", new { @class = "text-danger" })
     <br />
     @Html.Label("Select a category: ")
     @Html.DropDownListFor(e => e.CategoryId, (IEnumerable<SelectListItem>)ViewBag.CategoryId, "Select Category")
-    @* @Html.Label("Pick Category")
+    @Html.ValidationMessageFor(m => m.CategoryId, "", new { @class = "text-danger" })
+        @* @Html.Label("Pick Category")
     <select asp-for="Category">
         @foreach (ItemType Cat in Enum.GetValues(typeof(ItemType)))
         {
@@ -21,36 +23,66 @@
     <br />
     @Html.Label("Item Name: ")
     @Html.TextBoxFor(m => m.ItemName)
+    @Html.ValidationMessageFor(m => m.ItemName, "", new { @class = "text-danger" })
+
     <br />
     @Html.Label("Creator of Item: ")
     @Html.TextBoxFor(m => m.CreatorName)
+    @Html.ValidationMessageFor(m => m.CreatorName, "", new { @class = "text-danger" })
+
     <br />
     @Html.Label("Enter Publisher: ")
     @Html.TextBoxFor(m => m.Publisher)
+    @Html.ValidationMessageFor(m => m.Publisher, "", new { @class = "text-danger" })
+
     <br />
     @Html.Label("Enter Country of Origin: ")
     @Html.TextBoxFor(m => m.OriginCountry)
+    @Html.ValidationMessageFor(m => m.OriginCountry, "", new { @class = "text-danger" })
+
     <br />
     @Html.Label("Enter Item Description: ")
-    @Html.TextBoxFor(m => m.ItemDescription)
+    @Html.TextAreaFor(m => m.ItemDescription)
+    @Html.ValidationMessageFor(m => m.ItemDescription, "", new { @class = "text-danger" })
+
     <br />
     @Html.Label("Enter Item's Genre: ")
     @Html.TextBoxFor(m => m.Genre)
+    @Html.ValidationMessageFor(m => m.Genre, "", new { @class = "text-danger" })
+
     <br />
     @Html.Label("Enter Item Inventory: ")
     @Html.TextBoxFor(m => m.Inventory, new { @type = "number" })
+    @Html.ValidationMessageFor(m => m.Inventory, "", new { @class = "text-danger" })
+
+    <br />
+    @Html.Label("Item availability will be automatically set: ")
+    @Html.TextBoxFor(m => m.Available, new { @type = "number"})
+    @Html.ValidationMessageFor(m => m.Available, "", new { @class = "text-danger" })
+
     <br />
     @Html.Label("Enter Item's Image URL: ")
     @Html.TextBoxFor(m => m.ImageURL)
+    @*No validation for this feature*@
+
     <br />
     @Html.Label("Enter Date Added: ")
     @Html.TextBoxFor(m => m.DateAdded, "{0:yyyy-MM-dd}", new { type = "date" })
+    @Html.ValidationMessageFor(m => m.DateAdded, "", new { @class = "text-danger" })
+
     <br />
     @Html.Label("Enter Date of Creation: ")
     @Html.TextBoxFor(m => m.DateCreated, "{0:yyyy-MM-dd}", new { type = "date" })
+    @Html.ValidationMessageFor(m => m.DateCreated, "", new { @class = "text-danger" })
+
     <br />
     <input type="submit" class="btn btn-primary" value="Create" />
 }
+<br />
+<div>
+    @* @Html.ValidationSummary("Summary of all validations", new {@class = "text-danger"}) *@
+    @Html.ValidationSummary("", new { @style = "color:red" })
+</div>
 
 @if (ViewBag.Status == true)
 {

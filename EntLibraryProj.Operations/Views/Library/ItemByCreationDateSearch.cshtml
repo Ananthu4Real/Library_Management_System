@@ -42,6 +42,9 @@
                 <th>
                     @Html.DisplayNameFor(Model => Model[0].Genre)
                 </th>
+                <th>
+                    Actions
+                </th>
 
             </tr>
         </thead>
@@ -93,6 +96,11 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(e => item.Genre)
+                            </td>
+                            <td>
+                                <a asp-action="UpdateItem" asp-route-id="@item.LibItemId" class="btn btn-warning align-self-center btn-outline-dark align-content-center">Edit</a>
+                                <a asp-action="ItemDetails" asp-route-id="@item.LibItemId" class="btn btn-info align-self-center btn-outline-dark align-content-center">Details</a>
+                                <a asp-action="DeleteItem" asp-route-id="@item.LibItemId" class="btn btn-danger align-self-center btn-outline-dark align-content-center">Delete</a>
                             </td>
                         </tr>
                     }

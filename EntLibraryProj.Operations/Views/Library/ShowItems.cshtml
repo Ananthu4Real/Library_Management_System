@@ -1,88 +1,98 @@
 ﻿@using EntLibraryProj.Entities
 @model List<LibraryItem>
+<div class="container">
+    <div class="row">
+        <div class="bg-opacity-10 bg-info" style="width:stretch; height:stretch; padding-bottom:3px; padding-top:4px;">
+            <div class="grid-item bg-info bg-opacity-10 " style="padding-bottom: 3px;">
+                <div class="row">
+                    <pre>
+                        Click here to enter a new library item (admins only): 
+                        @using (Html.BeginForm("AddItem", "Library", FormMethod.Get))
+                        {
+                        <input type="submit" value="Create Library Item" />
+                        }
+                    </pre>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <table border=1 class="table table-striped">
+            <thead>
+                <tr style="background-color:DarkSeaGreen;">
+                    <th>
+                        @Html.DisplayNameFor(m => m[0].LibItemId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m[0].Category)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m[0].ItemName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m[0].CreatorName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m[0].Publisher)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m[0].OriginCountry)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m[0].Genre)
+                    </th>
 
-@using (Html.BeginForm("AddItem", "Library", FormMethod.Get))
-{
-    <input type="submit" value="Create Library Item" />
-}
-<div>
-    <table border=1 class="table table-striped">
-        <thead>
-            <tr style="background-color:DarkSeaGreen;">
-                <th>
-                    @Html.DisplayNameFor(m => m[0].LibItemId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(m => m[0].Category)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(m => m[0].ItemName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(m => m[0].CreatorName)
-                </th>
-                <th>
-                @Html.DisplayNameFor(m => m[0].Publisher)
-                </th>
-                <th>
-                @Html.DisplayNameFor(m => m[0].OriginCountry)
-                </th>
-                <th>
-                @Html.DisplayNameFor(m => m[0].Genre)
-                </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (LibraryItem Item in Model)
+                    {
+                        <tr>
+                            <th>
+                                @Html.DisplayFor(m => Item.LibItemId)
+                            </th>
+                            <th>
+                                @Html.DisplayFor(m => Item.Category.CategoryName)
+                            </th>
+                            <th>
+                                @Html.DisplayFor(m => Item.ItemName)
+                            </th>
+                            <th>
+                                @Html.DisplayFor(m => Item.CreatorName)
+                            </th>
+                            <th>
+                                @Html.DisplayFor(m => Item.Publisher)
+                            </th>
+                            <th>
+                                @Html.DisplayFor(m => Item.OriginCountry)
+                            </th>
+                            <th>
+                                @Html.DisplayFor(m => Item.Genre)
+                            </th>
 
-                <th>
-                    Actions
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model != null && Model.Any())
-            {
-                @foreach (LibraryItem Item in Model)
+                            <td>
+                                <a asp-action="UpdateItem" asp-route-id="@Item.LibItemId" class="btn btn-warning align-self-center btn-outline-dark align-content-center">Edit</a>
+                                <a asp-action="ItemDetails" asp-route-id="@Item.LibItemId" class="btn btn-info align-self-center btn-outline-dark align-content-center">Details</a>
+                                <a asp-action="DeleteItem" asp-route-id="@Item.LibItemId" class="btn btn-danger align-self-center btn-outline-dark align-content-center">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
                 {
                     <tr>
-                    <th>
-                        @Html.DisplayFor(m => Item.LibItemId)
-                    </th>
-                    <th>
-                        @Html.DisplayFor(m => Item.Category.CategoryName)
-                    </th>
-                    <th>
-                        @Html.DisplayFor(m => Item.ItemName)
-                    </th>
-                    <th>
-                        @Html.DisplayFor(m => Item.CreatorName)
-                    </th>
-                    <th>
-                        @Html.DisplayFor(m => Item.Publisher)
-                    </th>
-                    <th>
-                        @Html.DisplayFor(m => Item.OriginCountry)
-                    </th>
-                    <th>
-                        @Html.DisplayFor(m => Item.Genre)
-                    </th>
-                   
-                        <td>
-                            <a asp-action="UpdateItem" asp-route-id="@Item.LibItemId" class="btn btn-warning align-self-center btn-outline-dark align-content-center">Edit</a>
-                            <a asp-action="ItemDetails" asp-route-id="@Item.LibItemId" class="btn btn-info align-self-center btn-outline-dark align-content-center">Details</a>
-                            <a asp-action="DeleteItem" asp-route-id="@Item.LibItemId" class="btn btn-danger align-self-center btn-outline-dark align-content-center">Delete</a>
+                        <td colspan="4">
+                            No Items currently available
                         </td>
-
-                        
                     </tr>
                 }
-            }
-            else
-            {
-                <tr>
-                    <td colspan="4">
-                        No Items currently available
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
+            </tbody>
+        </table>
+    </div>
 </div>

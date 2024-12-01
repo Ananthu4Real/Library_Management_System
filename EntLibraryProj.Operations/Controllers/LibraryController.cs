@@ -29,25 +29,34 @@ namespace EntLibraryProj.Operations.Controllers
             List<LibraryItem> Items = _libraryService.GetItems();
             return View(Items);
         }
-
+        [Authorize(Roles = "Admin")]
         [Route("[action]")]
         [HttpGet]
         public IActionResult AddItem()
         {
+            //checks if valid model
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            //Add the list of categories (SelectListItem type) as a property of ViewBag in the view
             ViewBag.CategoryId = _selectListItemListOfCats;
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         [Route("[action]")]
         [HttpPost]
         public IActionResult AddItem(LibraryItem item)
         {
+            //Need to set the viewbag again to show the dropdown list and allow the validation to go through. 
             ViewBag.CategoryId = _selectListItemListOfCats;
             if(item != null)
             {
-                if(item.CategoryId >0 && item.CategoryId < 11)
+                //Need to subtract the category id by one due to how the setup was implemented
+                if (item.CategoryId >0 && item.CategoryId < 11)
                 {
                     item.CategoryId -= 1;
+                    //needs to set the category to pass validation
                     item.Category = _categoryService.ListCategory().ElementAt(item.CategoryId);
                 }
             }
@@ -58,8 +67,14 @@ namespace EntLibraryProj.Operations.Controllers
                 return View();
             }
             
+            //Implements availability feature to make sure that the item can actually be taken out. Automatically set up to = the initial inventory input
             item.Available = item.Inventory; //available = inventory
-            //item.DateAdded = DateOnly.FromDateTime(DateTime.Now); //today
+            //check if valid model
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            //item.DateAdded = DateOnly.FromDateTime(DateTime.Now); //today. Instead, added a way to add it during initial input
             _libraryService.AddItem(item);
             return RedirectToAction("ShowItems");
         }
@@ -89,33 +104,53 @@ namespace EntLibraryProj.Operations.Controllers
             if (item == null) {return RedirectToAction("ShowItems"); }
             return View(item);
         }
-
-        [Route("[action]/{id}")]
+        [Authorize(Roles = "Admin")]
+        [Route("[action]")]
         [HttpGet]
         public IActionResult UpdateItem(int id)
         {
+            ViewBag.CategoryId = _selectListItemListOfCats;
+
             LibraryItem? item = _libraryService.GetItem(id);
             if (item == null) { return RedirectToAction("ShowItems"); }
-            
-            ViewBag.CategoryId = _selectListItemListOfCats;
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             return View(item);
         }
-
+        [Authorize(Roles = "Admin")]
         [Route("[action]")]
         [HttpPost]
         public IActionResult UpdateItem(LibraryItem item)
         {
+            //Need to set the viewbag again to show the dropdown list and allow the validation to go through. 
             ViewBag.CategoryId = _selectListItemListOfCats;
             if (item != null)
             {
+                //Makes sure there is not more than the total inventory available.
+                if(item.Available > item.Inventory) item.Available = item.Inventory;
+
+                //Need to subtract the department id by one due to how the setup/workaround functions. 
                 if (item.CategoryId > 0 && item.CategoryId < 11)
                 {
                     item.CategoryId -= 1;
+                    //needs to set the category to pass validation
                     item.Category = _categoryService.ListCategory().ElementAt(item.CategoryId);
                 }
+                
             }
+            //check if valid model
+            if (!ModelState.IsValid)
+            {
+                
+                return View();
+            }
+
+            //Edits the library item
             _libraryService.UpdateItem(item);
-            return RedirectToAction("ShowItems");
+            return RedirectToAction("ShowItems", "Library");
         }
         [Route("[action]/{CategoryType?}")]
         [Route("/ItemsByCat/{id?}")]
