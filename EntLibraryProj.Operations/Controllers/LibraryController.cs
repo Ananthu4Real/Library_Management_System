@@ -11,16 +11,19 @@ namespace EntLibraryProj.Operations.Controllers
     [Route("[controller]")]
     public class LibraryController : Controller
     {
+        //Allows accessing the various services to perform CRUD ops on related database tables
         private ILibraryService _libraryService;
         private ICategoryServices _categoryService;
         private IUserService _userService;
-        List<SelectListItem> _selectListItemListOfCats;
-
+        List<SelectListItem> _selectListItemListOfCats; //Used for category drop down lists
+       
+        //Initiates the controller and the services used
         public LibraryController(ILibraryService libraryService, ICategoryServices categoryService, IUserService userService)
         {
             _libraryService = libraryService;
             _categoryService = categoryService;
             _userService = userService;
+            //Calls function to get the categories as a list of select list item objects
             _selectListItemListOfCats = ModelActions.CreateSelectListItemListForCategories(_categoryService.ListCategory().ToList());
         }
         [Route("[action]")]
@@ -29,6 +32,11 @@ namespace EntLibraryProj.Operations.Controllers
             List<LibraryItem> Items = _libraryService.GetItems();
             return View(Items);
         }
+        /// <summary>
+        /// Create operation input field section. Sends input to see if it can create the item. Validation is included
+        /// </summary>
+        /// <returns></returns>
+        //Requires admin role to add items
         [Authorize(Roles = "Admin")]
         [Route("[action]")]
         [HttpGet]
@@ -43,7 +51,12 @@ namespace EntLibraryProj.Operations.Controllers
             ViewBag.CategoryId = _selectListItemListOfCats;
             return View();
         }
-        [Authorize(Roles = "Admin")]
+        /// <summary>
+        /// Create Operation for library items
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "Admin")]    //Reqs admin role to add users
         [Route("[action]")]
         [HttpPost]
         public IActionResult AddItem(LibraryItem item)
@@ -60,7 +73,7 @@ namespace EntLibraryProj.Operations.Controllers
                     item.Category = _categoryService.ListCategory().ElementAt(item.CategoryId);
                 }
             }
-
+            //If the id isn't already used, allow the item to be made
             if (_libraryService.GetItem(item.LibItemId) != null)
             {
                 ViewBag.Status = true;
@@ -78,41 +91,66 @@ namespace EntLibraryProj.Operations.Controllers
             _libraryService.AddItem(item);
             return RedirectToAction("ShowItems");
         }
+
+        //Admin required to delete items. 
+        /// <summary>
+        /// Delete operation. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize(Roles = "Admin")]
         [Route("[action]/{id}")]
         [HttpGet]
         public IActionResult DeleteItem(int id) 
         {
             LibraryItem? item = _libraryService.GetItem(id); //grab item
-            foreach(LibraryUser user in _userService.GetUsers())
+            foreach(LibraryUser user in _userService.GetUsers())       //Removes the items from users if they have them checked out
             {
                 _userService.RemoveLibItem(user.UserName, id);
             }
+            //If the item doesn't exist, go back to the items list. 
             if (item == null) { return RedirectToAction("ShowItems"); }
+            //Otherwise delete the item and redirect to items list
             _libraryService.DeleteItem(id);
             return RedirectToAction("ShowItems");
         }
-
+        /// <summary>
+        /// Item details, usually selected by the itemslist view. Checks id to see if it matches an existing item to perform read op
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        //Decided to not need higher authoritization to read item details
         [Authorize]
         [Route("[action]/{id}")]
         [HttpGet]
         public IActionResult ItemDetails(int? id)
         {
+            //If the id is null, set i to 1, checking the first item
             int i = id ?? 1;
 
             LibraryItem? item = _libraryService.GetItem(i);
+            //If the item is null, go back to items list
             if (item == null) {return RedirectToAction("ShowItems"); }
+            //If it isn't view the item
             return View(item);
         }
+        //Requires the admin role to update items.
+        /// <summary>
+        /// Gets the input to update items
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize(Roles = "Admin")]
         [Route("[action]")]
         [HttpGet]
         public IActionResult UpdateItem(int id)
         {
+            //This viewbag allows the category drop down list to work
             ViewBag.CategoryId = _selectListItemListOfCats;
-
+            //Get the item. If it doesn't exist, go to item list again
             LibraryItem? item = _libraryService.GetItem(id);
             if (item == null) { return RedirectToAction("ShowItems"); }
+            //Checks the model state. If it is not good, return. If good, proceed
             if (!ModelState.IsValid)
             {
                 return View();
@@ -120,7 +158,12 @@ namespace EntLibraryProj.Operations.Controllers
 
             return View(item);
         }
-        [Authorize(Roles = "Admin")]
+        /// <summary>
+        /// Updates items from the given input. Performs validation and refactors cat id to be correct
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "Admin")]    //reqs admin role to update
         [Route("[action]")]
         [HttpPost]
         public IActionResult UpdateItem(LibraryItem item)
@@ -141,7 +184,7 @@ namespace EntLibraryProj.Operations.Controllers
                 }
                 
             }
-            //check if valid model
+            //check if valid model. If good, the item is updated
             if (!ModelState.IsValid)
             {
                 
@@ -152,6 +195,13 @@ namespace EntLibraryProj.Operations.Controllers
             _libraryService.UpdateItem(item);
             return RedirectToAction("ShowItems", "Library");
         }
+        /// <summary>
+        /// Lists items by category. Requires the viewbag of categories to get the dropdown list input to work. 
+        /// Uses the input to search for a valid category to decern items by
+        /// </summary>
+        /// <param name="CategoryType"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Route("[action]/{CategoryType?}")]
         [Route("/ItemsByCat/{id?}")]
         [Route("[action]")]
@@ -183,6 +233,12 @@ namespace EntLibraryProj.Operations.Controllers
             return View(_libraryService.GetItems());
         }
 
+        /// <summary>
+        /// Searches the library items by their date of creation. For example, inputting 01-01-2000 will only show
+        /// items the were published after the year 2000 began
+        /// </summary>
+        /// <param name="ChosenDate"></param>
+        /// <returns></returns>
         [Route("[action]")]
         public IActionResult ItemByCreationDateSearch(string? ChosenDate)
         {
@@ -215,6 +271,11 @@ namespace EntLibraryProj.Operations.Controllers
                 return View(_libraryService.GetItems());
             }
         }
+        /// <summary>
+        /// Checks out a book for an existing user. Reduces the number of books by 1
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize]
         [Route("[action]/{id}")]
         public IActionResult CheckOutBook(int id)
@@ -231,7 +292,11 @@ namespace EntLibraryProj.Operations.Controllers
             }
             return RedirectToAction(nameof(ShowItems));
         }
-
+        /// <summary>
+        /// Return the book from the user's posession. This will increase the number of available items by one.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize]
         [Route("[action]/{id}")]
         public IActionResult Return(int id)
@@ -248,7 +313,10 @@ namespace EntLibraryProj.Operations.Controllers
             }
             return RedirectToAction(nameof(ShowItems));
         }
-
+        /// <summary>
+        /// User can only have a max of 3 items checked out
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
         [HttpGet]
         [Route("[action]")]

@@ -14,6 +14,7 @@ namespace EntLibraryProj.Services
         {
             _libraryDbContext = libraryDbContext;
         }
+        //Gets IEnumerable<Category> object for the category table's categories
         public IEnumerable<Category> ListCategory()
         {
             return _libraryDbContext.CategoryInfo;

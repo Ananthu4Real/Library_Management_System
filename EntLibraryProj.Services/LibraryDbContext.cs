@@ -14,13 +14,10 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
     public DbSet<Category> CategoryInfo { get; set; }
     public DbSet<LibraryUser> UserTable { get; set; } = default!;
 
-    /*
-    public DbSet<Category> CategoriesTable { get; set; }
-    public DbSet<LibraryItem> ItemsTable { get; set; }
-    public DbSet<User> UsersTable { get; set; }
-    public DbSet<UserType> UserTypesTable { get; set; }
-    */
-
+    /// <summary>
+    /// Seeds database with various entries, including necessary categories, and library items for each category
+    /// </summary>
+    /// <param name="modelBuilder"></param>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Category>().HasData(
@@ -281,7 +278,7 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
     }
-
+    //Adds the first name/last name and library card number to the LibraryUser's respective table
     internal class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<LibraryUser>
     {
         public void Configure(EntityTypeBuilder<LibraryUser> builder)

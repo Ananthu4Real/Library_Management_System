@@ -4,6 +4,9 @@
     ViewData["Title"] = "Create";
 
 }
+@*This view allows users to input various field for adding an item to the library. Note that changing the available number doesn't matter/ 
+    uses category drop down list, working calendary in mm-dd-yyyy format. Validation works
+*@
 @using (Html.BeginForm("AddItem", "Library", FormMethod.Post))
 {
     <div class="input-group mb-3">

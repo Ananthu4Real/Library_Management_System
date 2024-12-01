@@ -10,12 +10,14 @@ namespace EntLibraryProj.Services
 {
     public interface IUserService
     {
+        //Gets the library user, adds an item to their name, removes said items. 
         LibraryUser? GetLibraryUser(string uname);
         bool AddLibItem(string uname, int itemID);
         bool RemoveLibItem(string uname, int itemID);
 
-
+        //Gets users
         List<LibraryUser> GetUsers();
+        //Gets roles
         string GetRole(string item);
     }
 }

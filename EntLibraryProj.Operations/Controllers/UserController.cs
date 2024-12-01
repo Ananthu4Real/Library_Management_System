@@ -21,7 +21,10 @@ namespace EntLibraryProj.Operations.Controllers
             _userService = userService;
             _selectListItemListOfCats = ModelActions.CreateSelectListItemListForCategories(_categoryService.ListCategory().ToList());
         }
-
+        /// <summary>
+        /// This displays a list of users, matching them to roles and displaying them in a table in the view of the same name. 
+        /// </summary>
+        /// <returns></returns>
         [Route("[action]")]
         public IActionResult ShowUsers()
         {

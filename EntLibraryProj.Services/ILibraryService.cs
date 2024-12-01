@@ -10,6 +10,10 @@ namespace EntLibraryProj.Services
 {
     public interface ILibraryService
     {
+        /// <summary>
+        /// Various CRUD operations are implemented in these services
+        /// </summary>
+        /// <returns></returns>
         public List<LibraryItem> GetItems();
         public LibraryItem? GetItem(int id);
         public void DeleteItem(int id);

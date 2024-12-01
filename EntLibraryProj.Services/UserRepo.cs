@@ -16,7 +16,12 @@ namespace EntLibraryProj.Services
         {
             _context = context;
         }
-
+        /// <summary>
+        /// Allows user to add items to their item repo. Only 3 item slots avail.
+        /// </summary>
+        /// <param name="uname"></param>
+        /// <param name="itemID"></param>
+        /// <returns></returns>
         public bool AddLibItem(string uname, int itemID)
         {
             LibraryUser? user = GetLibraryUser(uname);
@@ -43,6 +48,12 @@ namespace EntLibraryProj.Services
             return true;
 
         }
+        /// <summary>
+        /// Removes items from the slots, allowing user to fill them again upon
+        /// </summary>
+        /// <param name="uname"></param>
+        /// <param name="itemID"></param>
+        /// <returns></returns>
         public bool RemoveLibItem(string uname, int itemID)
         {
             LibraryUser? user = GetLibraryUser(uname);
@@ -66,13 +77,20 @@ namespace EntLibraryProj.Services
             _context.SaveChanges();
             return true;
         }
-
+        /// <summary>
+        /// Gets library user, including matching items to their username
+        /// </summary>
+        /// <param name="uname"></param>
+        /// <returns></returns>
         public LibraryUser? GetLibraryUser(string uname)
         {
             LibraryUser? user = _context.UserTable.Include("Item1").Include("Item2").Include("Item3").ToList().Where(e => e.UserName == uname).FirstOrDefault();
             return user;
         }
-
+        /// <summary>
+        /// Get users as a list with their matching items
+        /// </summary>
+        /// <returns></returns>
         public List<LibraryUser> GetUsers()
         {
             List<LibraryUser> users = _context.UserTable.Include("Item1").Include("Item2").Include("Item3").ToList();

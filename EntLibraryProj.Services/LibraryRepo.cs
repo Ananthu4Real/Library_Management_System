@@ -10,21 +10,25 @@ using System.Threading.Tasks;
 
 namespace EntLibraryProj.Services
 {
+    /// <summary>
+    /// Enables crud operations for Library Items
+    /// </summary>
     public class LibraryRepo : ILibraryService
     {
+        
         private readonly LibraryDbContext _context;
-
+        
         public LibraryRepo(LibraryDbContext context)
         {
             _context = context;
         }
-
+        //Adds an library item to the table
         public void AddItem(LibraryItem item)
         {
             _context.LibraryItems.Add(item);
             _context.SaveChanges();
         }
-
+        //Deletes an item based on id, if it is not null
         public void DeleteItem(int id)
         {
             LibraryItem? L = _context.LibraryItems.Find(id);
@@ -32,13 +36,13 @@ namespace EntLibraryProj.Services
             _context.LibraryItems.Remove(L);
             _context.SaveChanges();
         }
-
+        //Gets a single item based on id
         public LibraryItem? GetItem(int id)
         {
             LibraryItem? L = _context.LibraryItems.Find(id);
             return L;
         }
-
+        //Gets items list
         public List<LibraryItem> GetItems()
         {
             return _context.LibraryItems.ToList();
@@ -61,7 +65,11 @@ namespace EntLibraryProj.Services
             L.DateCreated = item.DateCreated;
             _context.SaveChanges();
         }
-
+        /// <summary>
+        /// Used for checking out books. Checks to make sure there is actually a book available
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool CheckOutBook(int id)
         {
             LibraryItem? item = GetItem(id);
@@ -74,7 +82,11 @@ namespace EntLibraryProj.Services
             }
             return false;
         }
-
+        /// <summary>
+        /// Returns a book, adding an available item, so long as it doesn't exceed inventory.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool ReturnBook(int id)
         {
             LibraryItem? item = GetItem(id);
