@@ -1,7 +1,7 @@
 ﻿@using EntLibraryProj.Entities
 @model LibraryItem
 @*
-    This page allows the user to update a library item already in the libraryItem table. Requires entry of a role name
+    This page allows the user to update a library item already in the libraryItem table. Requires valid role. The commented out block at the bottom is the simpler version of the input
 *@
 <h2>
     Edit a library item
@@ -9,71 +9,157 @@
 @using (Html.BeginForm("UpdateItem", "Library", FormMethod.Post))
 {
 
-    @* These essentially display the input fields + their labels, and validation messages if incorrect entry occurs. Summary of validation concerns is below the submit button *@
-    @Html.Label("Item Id (readonly): ")
-    @Html.TextBoxFor(m => m.LibItemId, new { @readonly = "readonly" })
-    @Html.ValidationMessageFor(m => m.LibItemId, "", new { @class = "text-danger" })
-    <br />
-    @Html.Label("Select a category: ")
-    @Html.DropDownListFor(e => e.CategoryId, (IEnumerable<SelectListItem>)ViewBag.CategoryId, "Select Category")
-    @Html.ValidationMessageFor(m => m.CategoryId, "", new { @class = "text-danger" })
-    <br />
-    @Html.Label("Item Name: ")
-    @Html.TextBoxFor(m => m.ItemName)
-    @Html.ValidationMessageFor(m => m.ItemName, "", new { @class = "text-danger" })
+    
 
-    <br />
-    @Html.Label("Creator of Item: ")
-    @Html.TextBoxFor(m => m.CreatorName)
-    @Html.ValidationMessageFor(m => m.CreatorName, "", new { @class = "text-danger" })
 
-    <br />
-    @Html.Label("Enter Publisher: ")
-    @Html.TextBoxFor(m => m.Publisher)
-    @Html.ValidationMessageFor(m => m.Publisher, "", new { @class = "text-danger" })
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                @Html.Label("Item Id (readonly): ")
+            </span>
+        </div>
+        @Html.TextBoxFor(m => m.LibItemId, new { @readonly = "readonly" })
+        <span class="input-group-text">
+            @Html.ValidationMessageFor(m => m.LibItemId, "", new { @class = "text-danger" })
+        </span>
+    </div>
 
-    <br />
-    @Html.Label("Enter Country of Origin: ")
-    @Html.TextBoxFor(m => m.OriginCountry)
-    @Html.ValidationMessageFor(m => m.OriginCountry, "", new { @class = "text-danger" })
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                @Html.Label("Select a category: ")
+            </span>
+        </div>
+        @Html.DropDownListFor(e => e.CategoryId, (IEnumerable<SelectListItem>)ViewBag.CategoryId, "Select Category")
+        <span class="input-group-text">
+            @Html.ValidationMessageFor(m => m.CategoryId, "", new { @class = "text-danger" })
+        </span>
+    </div>
 
-    <br />
-    @Html.Label("Enter Item Description: ")
-    @Html.TextBoxFor(m => m.ItemDescription)
-    @Html.ValidationMessageFor(m => m.ItemDescription, "", new { @class = "text-danger" })
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                @Html.Label("Item Name: ")
+            </span>
+        </div>
+        @Html.TextBoxFor(m => m.ItemName, new { @class = "form-input" })
+        <span class="input-group-text">
+            @Html.ValidationMessageFor(m => m.ItemName, "", new { @class = "text-danger" })
+        </span>
+    </div>
 
-    <br />
-    @Html.Label("Enter Item's Genre: ")
-    @Html.TextBoxFor(m => m.Genre)
-    @Html.ValidationMessageFor(m => m.Genre, "", new { @class = "text-danger" })
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                @Html.Label("Creator of Item: ")
+            </span>
+        </div>
+        @Html.TextBoxFor(m => m.CreatorName, new { @class = "form-input" })
+        <span class="input-group-text">
+            @Html.ValidationMessageFor(m => m.CreatorName, "", new { @class = "text-danger" })
+        </span>
+    </div>
 
-    <br />
-    @Html.Label("Enter Item Inventory: ")
-    @Html.TextBoxFor(m => m.Inventory, new { @type = "number" })
-    @Html.ValidationMessageFor(m => m.Inventory, "", new { @class = "text-danger" })
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                @Html.Label("Enter Publisher: ")
+            </span>
+        </div>
+        @Html.TextBoxFor(m => m.Publisher, new { @class = "form-input" })
+        <span class="input-group-text">
+            @Html.ValidationMessageFor(m => m.Publisher, "", new { @class = "text-danger" })
+        </span>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                @Html.Label("Enter Country of Origin: ")
+            </span>
+        </div>
+        @Html.TextBoxFor(m => m.OriginCountry, new { @class = "form-input" })
+        <span class="input-group-text">
+            @Html.ValidationMessageFor(m => m.OriginCountry, "", new { @class = "text-danger" })
+        </span>
+    </div>
 
-    <br />
-    @Html.Label("Enter Items Available: ")
-    @Html.TextBoxFor(m => m.Available, new { @type = "number" })
-    @Html.ValidationMessageFor(m => m.Available, "", new { @class = "text-danger" })
+    <div class="input-group mb-3">
+        <span class="input-group-text">
+            @Html.Label("Enter Item Description: ")
+        </span>
+        @Html.TextAreaFor(m => m.ItemDescription, new { @class = "form-control" })
+        <span class="input-group-text">
+            @Html.ValidationMessageFor(m => m.ItemDescription, "", new { @class = "text-danger" })
+        </span>
 
-    <br />
+    </div>
 
-    <br />
-    @Html.Label("Enter Item's Image URL: ")
-    @Html.TextBoxFor(m => m.ImageURL)
-    @*No validation required for this item.*@
-
-    <br />
-    @Html.Label("Enter Date Added: ")
-    @Html.TextBoxFor(m => m.DateAdded, "{0:yyyy-MM-dd}", new { type = "date" })
-    @Html.ValidationMessageFor(m => m.DateAdded, "", new { @class = "text-danger" })
-
-    <br />
-    @Html.Label("Enter Date of Creation: ")
-    @Html.TextBoxFor(m => m.DateCreated, "{0:yyyy-MM-dd}", new { type = "date" })
-    @Html.ValidationMessageFor(m => m.DateCreated, "", new { @class = "text-danger" })
-
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                @Html.Label("Enter Item's Genre: ")
+            </span>
+        </div>
+        @Html.TextBoxFor(m => m.Genre, new { @class = "form-input" })
+        <span class="input-group-text">
+            @Html.ValidationMessageFor(m => m.Genre, "", new { @class = "text-danger" })
+        </span>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                @Html.Label("Enter Item Inventory: ")
+            </span>
+        </div>
+        @Html.TextBoxFor(m => m.Inventory, new { @type = "number" })
+        <span class="input-group-text">
+            @Html.ValidationMessageFor(m => m.Inventory, "", new { @class = "text-danger" })
+        </span>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                @Html.Label("Enter Items Available: ")
+            </span>
+        </div>
+        @Html.TextBoxFor(m => m.Available, new { @type = "number" })
+        <span class="input-group-text">
+            @Html.ValidationMessageFor(m => m.Available, "", new { @class = "text-danger" })
+        </span>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                @Html.Label("Enter Item's Image URL: ")
+            </span>
+        </div>
+        @Html.TextBoxFor(m => m.ImageURL, new { @class = "form-input" })
+        <span class="input-group-text">
+            @Html.ValidationMessageFor(m => m.ImageURL, "", new { @class = "text-danger" })
+        </span>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                @Html.Label("Enter Date Added: ")
+            </span>
+        </div>
+        @Html.TextBoxFor(m => m.DateAdded, "{0:yyyy-MM-dd}", new { type = "date" })
+        <span class="input-group-text">
+            @Html.ValidationMessageFor(m => m.DateAdded, "", new { @class = "text-danger" })
+        </span>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                @Html.Label("Enter Date of Creation: ")
+            </span>
+        </div>
+        @Html.TextBoxFor(m => m.DateCreated, "{0:yyyy-MM-dd}", new { type = "date" })
+        <span class="input-group-text">
+            @Html.ValidationMessageFor(m => m.DateCreated, "", new { @class = "text-danger" })
+        </span>
+    </div>
     <br />
     <input type="submit" class="btn btn-primary" value="UpdateItem" />
 }
@@ -86,3 +172,70 @@
 {
     <input type="submit" value="Home" />
 }
+
+
+
+<!--
+@* These essentially display the input fields + their labels, and validation messages if incorrect entry occurs. Summary of validation concerns is below the submit button *@
+@Html.Label("Item Id (readonly): ")
+@Html.TextBoxFor(m => m.LibItemId, new { @readonly = "readonly" })
+@Html.ValidationMessageFor(m => m.LibItemId, "", new { @class = "text-danger" })
+    <br />
+@Html.Label("Select a category: ")
+@Html.DropDownListFor(e => e.CategoryId, (IEnumerable<SelectListItem>)ViewBag.CategoryId, "Select Category")
+@Html.ValidationMessageFor(m => m.CategoryId, "", new { @class = "text-danger" })
+    <br />
+@Html.Label("Item Name: ")
+@Html.TextBoxFor(m => m.ItemName)
+@Html.ValidationMessageFor(m => m.ItemName, "", new { @class = "text-danger" })
+
+    <br />
+@Html.Label("Creator of Item: ")
+@Html.TextBoxFor(m => m.CreatorName)
+@Html.ValidationMessageFor(m => m.CreatorName, "", new { @class = "text-danger" })
+
+    <br />
+@Html.Label("Enter Publisher: ")
+@Html.TextBoxFor(m => m.Publisher)
+@Html.ValidationMessageFor(m => m.Publisher, "", new { @class = "text-danger" })
+
+    <br />
+@Html.Label("Enter Country of Origin: ")
+@Html.TextBoxFor(m => m.OriginCountry)
+@Html.ValidationMessageFor(m => m.OriginCountry, "", new { @class = "text-danger" })
+
+    <br />
+@Html.Label("Enter Item Description: ")
+@Html.TextAreaFor(m => m.ItemDescription)
+@Html.ValidationMessageFor(m => m.ItemDescription, "", new { @class = "text-danger" })
+
+    <br />
+@Html.Label("Enter Item's Genre: ")
+@Html.TextBoxFor(m => m.Genre)
+@Html.ValidationMessageFor(m => m.Genre, "", new { @class = "text-danger" })
+
+    <br />
+@Html.Label("Enter Item Inventory: ")
+@Html.TextBoxFor(m => m.Inventory, new { @type = "number" })
+@Html.ValidationMessageFor(m => m.Inventory, "", new { @class = "text-danger" })
+
+    <br />
+@Html.Label("Enter Items Available: ")
+@Html.TextBoxFor(m => m.Available, new { @type = "number" })
+@Html.ValidationMessageFor(m => m.Available, "", new { @class = "text-danger" })
+
+    <br />
+@Html.Label("Enter Item's Image URL: ")
+@Html.TextBoxFor(m => m.ImageURL)
+@*No validation required for this item.*@
+
+    <br />
+@Html.Label("Enter Date Added: ")
+@Html.TextBoxFor(m => m.DateAdded, "{0:yyyy-MM-dd}", new { type = "date" })
+@Html.ValidationMessageFor(m => m.DateAdded, "", new { @class = "text-danger" })
+
+    <br />
+@Html.Label("Enter Date of Creation: ")
+@Html.TextBoxFor(m => m.DateCreated, "{0:yyyy-MM-dd}", new { type = "date" })
+@Html.ValidationMessageFor(m => m.DateCreated, "", new { @class = "text-danger" })
+-->

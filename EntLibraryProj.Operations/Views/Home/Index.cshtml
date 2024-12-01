@@ -9,7 +9,10 @@
             <hr>
             <p> By Ian, Ryan and Noah<br />
                 Sheridan College<br />
-                PROG30000: Enterprise Software Systems<br /><hr />
+                Assignment: Final Project <br />
+                CourseNo = PROG30000: Enterprise Software Systems<br />
+                InstructorName = Syed Tanbeer
+                <br /><hr />
                 <br /> 
                 Welcome to our library! We have a strong selection of the finest books, movies, games, and even some magazines, newspapers, software and more! <br />
                 Sign up with a free account to gain access to the library!
@@ -34,18 +37,6 @@
         <br />
             
         
-        <br />
-        <button class="btn dropdown-toggle btn-info btn-outline-secondary" type="button" id="adminDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <b class="fa-solid fa-user text-white fs-5 ">Admin Controls</b>
-        </button>
-
-        <div class="dropdown-menu dropdown-menu-right bg-secondary btn-outline-info border-bottom" aria-labelledby="adminDropdown">
-            <a class="dropdown-item text-info link-dark " asp-controller="Admin" asp-action="ListRoles">Admin -  List Roles</a>
-            <a class="dropdown-item text-info link-dark " asp-controller="Admin" asp-action="CreateRole">Admin -  Create Role</a>
-            <a class="dropdown-item text-info link-dark " asp-controller="Admin" asp-action="ListRoles">Admin -  List Roles</a>
-                <a class="dropdown-item text-info link-dark " asp-controller="User" asp-action="ShowUsers">List of Users</a>
-
-        </div>
         
 
 
@@ -55,8 +46,20 @@
     <div class="jumbotron text-center container-fluid text-center bg-opacity-10 bg-dark align-self-xl-stretch" style="background-size: auto; padding-bottom: 30px;padding-top:10px;">
         <h1>Misc Information: </h1>
         <h4>
-            <br />
-            <br />
+                <br />
+                <button class="btn dropdown-toggle btn-info btn-outline-secondary" type="button" id="adminDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <b class="fa-solid fa-user text-white fs-5 ">Admin Controls</b>
+                </button>
+
+                <div class="dropdown-menu dropdown-menu-right bg-secondary btn-outline-info border-bottom" aria-labelledby="adminDropdown">
+                    <a class="dropdown-item text-info link-dark bg-opacity-10" asp-controller="Admin" asp-action="ListRoles">Admin -  List Roles</a>
+                    <a class="dropdown-item text-info link-dark bg-opacity-25" asp-controller="Admin" asp-action="CreateRole">Admin -  Create Role</a>
+                    <a class="dropdown-item text-info link-dark bg-opacity-50" asp-controller="Admin" asp-action="ListRoles">Admin -  List Roles</a>
+                    <a class="dropdown-item text-info link-dark bg-opacity-75" asp-controller="User" asp-action="ShowUsers">List of Users</a>
+
+                </div>
+
+                <br />
 
         </h4>
         <br />
