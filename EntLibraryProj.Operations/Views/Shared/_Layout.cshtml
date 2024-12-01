@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EntLibraryProj.Operations</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -34,16 +34,29 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-controller="Library" asp-action="ListItemsByCategory">View by Category</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-controller="Admin" asp-action="AddUserToRole">Admin -  Add User To Role</a>
+                        <li>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item dropdown ">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Admin Controls
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                            <li><a class="dropdown-item" asp-controller="Admin" asp-action="ListRoles">Admin -  List Roles</a></li>
+                                            <li><a class="dropdown-item" asp-controller="Admin" asp-action="CreateRole">Admin -  Create Role</a></li>
+                                            <li><a class="dropdown-item" asp-controller="Admin" asp-action="ListRoles">Admin -  List Roles</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-controller="Admin" asp-action="CreateRole">Admin -  Create Role</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-controller="Admin" asp-action="ListRoles">Admin -  List Roles</a>
-                        </li>
+                        
                     </ul>
+                   
+                    
                     <partial name="_LoginPartial" />
                 </div>
             </div>

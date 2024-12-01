@@ -1,8 +1,52 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<div class="grid-item align-content-sm-start" style="padding-bottom: 10px;">
+    <br>
+    <div class="jumbotron text-center container-fluid text-center bg-opacity-10 bg-dark align-self-xl-stretch" style="background-size: auto; padding-bottom: 30px;padding-top:10px;">
+        <div class="jumbotron text-center container-fluid" style="margin-bottom: 45px;">
+            <h1 class="bg-opacity-10 bg-dark" style="margin:3px; padding:3px;">Library Enterprise Software System</h1>
+            <br />
+            <p> By Ian, Ryan and Noah<br />
+                Sheridan College<br />
+                PROG30000: Enterprise Software Systems<br /><hr />
+                <br /> 
+                Welcome to our library! We have a strong selection of the finest books, movies, games, and even some magazines, newspapers, software and more! <br />
+                Sign up with a free account to gain access to the library!
 
-@using (Html.BeginForm("ShowItems", "Library", FormMethod.Get))
-{
-    <input type="submit" value="Library" />
-}
+            </p>
+        </div>
+
+        
+    </div>
+</div>
+<div class="grid-item align-content-sm-start bg-info bg-opacity-10 align-self-xl-stretch" style="padding-bottom: 10px;">
+    <div class="jumbotron text-center container-fluid text-center bg-opacity-10 bg-dark align-self-xl-stretch" style="background-size: auto; padding-bottom: 30px;padding-top:10px;">
+        <h1>Important Links: </h1>
+        <h4>
+            <a class="justify-content-xxl-center text-info link-dark" asp-controller="Library" asp-action="ShowItems">Go to Items List</a>
+        </h4>
+        <br />
+        <button class="btn dropdown-toggle btn-info btn-outline-secondary" type="button" id="adminDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <b class="fa-solid fa-user text-white fs-5 ">Admin Controls</b>
+        </button>
+
+        <div class="dropdown-menu dropdown-menu-right bg-secondary btn-outline-info border-bottom" aria-labelledby="adminDropdown">
+            <a class="dropdown-item text-info link-dark " asp-controller="Admin" asp-action="ListRoles">Admin -  List Roles</a>
+            <a class="dropdown-item text-info link-dark " asp-controller="Admin" asp-action="CreateRole">Admin -  Create Role</a>
+            <a class="dropdown-item text-info link-dark " asp-controller="Admin" asp-action="ListRoles">Admin -  List Roles</a>
+        </div>
+        
+
+
+    </div>
+</div>
+<div class="grid-item align-content-sm-start bg-primary bg-opacity-10 align-self-xl-stretch" style="padding-bottom: 10px; ">
+    <div class="jumbotron text-center container-fluid text-center bg-opacity-10 bg-dark align-self-xl-stretch" style="background-size: auto; padding-bottom: 30px;padding-top:10px;">
+        <h1>Misc Information: </h1>
+        <h4>
+            
+        </h4>
+        <br />
+    </div>
+</div>

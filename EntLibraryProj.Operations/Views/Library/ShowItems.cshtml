@@ -65,19 +65,12 @@
                     </th>
                    
                         <td>
-                        @using (Html.BeginForm("ItemDetails", "Library", new { id = Item.LibItemId }, FormMethod.Get))
-                        {
-                            <input type="submit" value="Details" />
-                        }
-                        @using (Html.BeginForm("DeleteItem", "Library", new { id = Item.LibItemId }, FormMethod.Get))
-                        {
-                            <input type="submit" value="Delete" />
-                        }
-                        @using (Html.BeginForm("UpdateItem", "Library", new { id = Item.LibItemId }, FormMethod.Get))
-                        {
-                            <input type="submit" value="Edit" />
-                        }
+                            <a asp-action="UpdateItem" asp-route-id="@Item.LibItemId" class="btn btn-info align-self-center btn-outline-dark align-content-center">Edit</a>
+                            <a asp-action="ItemDetails" asp-route-id="@Item.LibItemId" class="btn btn-primary align-self-center btn-outline-dark align-content-center">Details</a>
+                            <a asp-action="DeleteItem" asp-route-id="@Item.LibItemId" class="btn btn-warning align-self-center btn-outline-dark align-content-center">Delete</a>
                         </td>
+
+                        
                     </tr>
                 }
             }
