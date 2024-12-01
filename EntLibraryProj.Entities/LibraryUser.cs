@@ -14,9 +14,17 @@ public class LibraryUser : IdentityUser
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
 
-    [ForeignKey("Item")]
-    public int? itemId { get; set; }
-    public LibraryItem? Item { get; set; }
+    [ForeignKey("Item1")]
+    public int? itemId1 { get; set; }
+    public LibraryItem? Item1 { get; set; }
+
+    [ForeignKey("Item2")]
+    public int? itemId2 { get; set; }
+    public LibraryItem? Item2 { get; set; }
+
+    [ForeignKey("Item3")]
+    public int? itemId3 { get; set; }
+    public LibraryItem? Item3 { get; set; }
 
 }
 

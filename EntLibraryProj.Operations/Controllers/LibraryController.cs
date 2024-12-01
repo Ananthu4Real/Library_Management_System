@@ -68,7 +68,7 @@ namespace EntLibraryProj.Operations.Controllers
         [HttpGet]
         public IActionResult DeleteItem(int id) 
         {
-            LibraryItem? item = _libraryService.GetItem(id);
+            LibraryItem? item = _libraryService.GetItem(id); //grab item
             foreach(LibraryUser user in _userService.GetUsers())
             {
                 _userService.RemoveLibItem(user.UserName, id);
@@ -185,21 +185,57 @@ namespace EntLibraryProj.Operations.Controllers
         public IActionResult CheckOutBook(int id)
         {
             string name = User.Identity.Name;
-            _libraryService.CheckOutBook(id);
-            _userService.AddLibItem(name, id);
+            bool stat = _libraryService.CheckOutBook(id);
+            if (stat)
+            {
+                stat = _userService.AddLibItem(name, id);
+                if (!stat)
+                {
+                    _libraryService.ReturnBook(id);
+                }
+            }
+            return RedirectToAction(nameof(ShowItems));
+        }
+
+        [Authorize]
+        [Route("[action]/{id}")]
+        public IActionResult Return(int id)
+        {
+            string name = User.Identity.Name;
+            bool stat = _libraryService.ReturnBook(id);
+            if (stat)
+            {
+                stat = _userService.RemoveLibItem(name, id);
+                if (!stat)
+                {
+                    _libraryService.CheckOutBook(id);
+                }
+            }
             return RedirectToAction(nameof(ShowItems));
         }
 
         [Authorize]
         [HttpGet]
         [Route("[action]")]
-        public IActionResult CheckedOut()
+        public IActionResult CheckedOut() //show all items a user has checked out
         {
-            string name = User.Identity.Name;
-            LibraryUser user = _userService.GetLibraryUser(name);
-            int? item = user.itemId;
-            if (item == null) { return RedirectToAction("Index", "Home"); }
-            return RedirectToAction("ItemDetails", new {id = item});
+            string name = User.Identity.Name; //get logged in user
+            LibraryUser user = _userService.GetLibraryUser(name); //get name associated with u-name
+            List<int> items = new List<int>();
+            if (user.itemId1 != null) { items.Add((int)user.itemId1); }
+            if (user.itemId2 != null) { items.Add((int)user.itemId2); }
+            if (user.itemId3 != null) { items.Add((int)user.itemId3); }
+            if (items.Count == 0) { return RedirectToAction("Index", "Home"); }// no checked out item
+            List<LibraryItem> list = new List<LibraryItem>();
+            foreach (var item in items)
+            {
+                LibraryItem? libraryItem = _libraryService.GetItem(item);
+                if (libraryItem != null)
+                {
+                    list.Add(libraryItem);
+                }
+            }
+            return View(list);
         }
     }
 }

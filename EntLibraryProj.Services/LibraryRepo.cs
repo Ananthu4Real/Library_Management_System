@@ -62,26 +62,31 @@ namespace EntLibraryProj.Services
             _context.SaveChanges();
         }
 
-        public void CheckOutBook(int id)
+        public bool CheckOutBook(int id)
         {
             LibraryItem? item = GetItem(id);
-            if (item == null) { return; }
-            if(item.Available > 0)
+            if (item == null) { return false; }
+            if (item.Available > 0)
             {
                 item.Available--;
+                _context.SaveChanges();
+                return true;
             }
-            _context.SaveChanges();
+            return false;
         }
 
-        public void ReturnBook(int id)
+        public bool ReturnBook(int id)
         {
             LibraryItem? item = GetItem(id);
-            if (item == null) { return; }
+            if (item == null) { return false; }
             if (item.Available < item.Inventory)
             {
                 item.Available++;
+                _context.SaveChanges();
+                return true;
             }
-            _context.SaveChanges();
+            return false;
+
         }
     }
 }

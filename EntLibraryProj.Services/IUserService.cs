@@ -11,8 +11,9 @@ namespace EntLibraryProj.Services
     public interface IUserService
     {
         LibraryUser? GetLibraryUser(string uname);
-        void AddLibItem(string uname, int itemID);
-        void RemoveLibItem(string uname, int itemID);
+        bool AddLibItem(string uname, int itemID);
+        bool RemoveLibItem(string uname, int itemID);
+
 
         List<LibraryUser> GetUsers();
         string GetRole(string item);

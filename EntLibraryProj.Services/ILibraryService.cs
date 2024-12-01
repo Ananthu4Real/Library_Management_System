@@ -15,7 +15,7 @@ namespace EntLibraryProj.Services
         public void DeleteItem(int id);
         public void AddItem(LibraryItem item);
         public void UpdateItem(LibraryItem item);
-        public void CheckOutBook(int id);
-        public void ReturnBook(int id);
+        public bool CheckOutBook(int id);
+        public bool ReturnBook(int id);
     }
 }
