@@ -13,7 +13,7 @@ namespace EntLibraryProj.Operations.Controllers
         public AdminController(RoleManager<IdentityRole> roleManager, UserManager<LibraryUser> userManager)
         {
             this.roleManager = roleManager;
-            this.userManager = userManager;;
+            this.userManager = userManager;
         }
 
         [Route("[action]")]
