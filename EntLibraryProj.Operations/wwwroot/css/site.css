@@ -20,3 +20,36 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; 
+}
+
+/* Button styles */
+.btn-page {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff; 
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-page:hover {
+  background-color: #0056b3; 
+  transform: scale(1.05); 
+  color:white;
+}
+
+.btn-page:active {
+  background-color: #003f7f; 
+  transform: scale(0.95); 
+}

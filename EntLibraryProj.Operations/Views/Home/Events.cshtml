@@ -1,0 +1,24 @@
+@model IEnumerable<EntLibraryProj.Models.EventModel>
+@{
+    ViewData["Title"] = "Events";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Upcoming Events</h1>
+    <div class="row">
+        @foreach (var ev in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <img src="@ev.ImageUrl" class="card-img-top" alt="@ev.Name">
+                    <div class="card-body">
+                        <h5 class="card-title">@ev.Name</h5>
+                        <p class="card-text text-muted">@ev.Date.ToString("MMMM dd, yyyy @ h:mm tt")</p>
+                        <p class="card-text">@ev.Description</p>
+                        <a href="@Url.Action("Register", "Events", new { id = ev.Id })" class="btn btn-primary">Register</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
