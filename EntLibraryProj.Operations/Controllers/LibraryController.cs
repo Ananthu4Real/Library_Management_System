@@ -132,7 +132,7 @@ namespace EntLibraryProj.Operations.Controllers
                 //Makes sure there is not more than the total inventory available.
                 if(item.Available > item.Inventory) item.Available = item.Inventory;
 
-                //Need to subtract the department id by one due to how the setup/workaround functions. 
+                //Need to subtract the category id by one due to how the setup/workaround functions. 
                 if (item.CategoryId > 0 && item.CategoryId < 11)
                 {
                     item.CategoryId -= 1;
@@ -176,7 +176,7 @@ namespace EntLibraryProj.Operations.Controllers
                 }
             }
 
-            //Add the list of cats (SelectListItem type) as a property of ViewBag, and the selected id below, for use on the view for filtering by department
+            //Add the list of cats (SelectListItem type) as a property of ViewBag, and the selected id below, for use on the view for filtering by category
             ViewBag.CategoryType = listOfCategories;
 
             ViewBag.SelectedCategory = i.ToString();

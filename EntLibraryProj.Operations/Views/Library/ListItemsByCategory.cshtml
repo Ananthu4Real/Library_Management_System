@@ -9,7 +9,6 @@
 @using (Html.BeginForm("ListItemsByCategory", "Library", FormMethod.Get))
 {
     @Html.Label("Select an item: ")
-    //(IEnumerable<SelectListItem>)ViewBag.Departments,
     @Html.DropDownList("CategoryType")
     <input type="submit" value="ListItemsByCategory" class="btn btn-primary" />
 }
@@ -17,7 +16,7 @@
 <br />
 <h2></h2>
 <br />
-<h1>Select Employees by Department</h1>
+<h2>List Items By Category</h2>
 <div class="text-center">
     <h1 class="display-4">List of Items</h1>
     <table border=1 class="table table-striped">

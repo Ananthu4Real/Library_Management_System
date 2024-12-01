@@ -9,7 +9,6 @@
 @using (Html.BeginForm("ItemByCreationDateSearch", "Library", FormMethod.Get))
 {
     @Html.Label("Enter a date: ")
-    //(IEnumerable<SelectListItem>)ViewBag.Departments,
     @Html.TextBox("ChosenDate", "{0:yyyy-MM-dd}", new { type = "date" })
     <input type="submit" value="Enter Date Search" class="btn btn-primary" />
 }
