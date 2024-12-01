@@ -1,8 +1,10 @@
 ﻿using EntLibraryProj.Entities;
+using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -58,6 +60,33 @@ namespace EntLibraryProj.Services
             L.DateAdded = item.DateAdded;
             L.DateCreated = item.DateCreated;
             _context.SaveChanges();
+        }
+
+        public bool CheckOutBook(int id)
+        {
+            LibraryItem? item = GetItem(id);
+            if (item == null) { return false; }
+            if (item.Available > 0)
+            {
+                item.Available--;
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public bool ReturnBook(int id)
+        {
+            LibraryItem? item = GetItem(id);
+            if (item == null) { return false; }
+            if (item.Available < item.Inventory)
+            {
+                item.Available++;
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+
         }
     }
 }

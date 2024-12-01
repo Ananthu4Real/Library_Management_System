@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -12,6 +13,18 @@ public class LibraryUser : IdentityUser
     public int LibraryCardNum { get; set; }
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
+
+    [ForeignKey("Item1")]
+    public int? itemId1 { get; set; }
+    public LibraryItem? Item1 { get; set; }
+
+    [ForeignKey("Item2")]
+    public int? itemId2 { get; set; }
+    public LibraryItem? Item2 { get; set; }
+
+    [ForeignKey("Item3")]
+    public int? itemId3 { get; set; }
+    public LibraryItem? Item3 { get; set; }
 
 }
 

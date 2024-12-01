@@ -16,6 +16,7 @@ builder.Services.AddDefaultIdentity<LibraryUser>(options => options.SignIn.Requi
 //builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ILibraryService, LibraryRepo>();
 builder.Services.AddScoped<ICategoryServices, CategoryRepository>();
+builder.Services.AddScoped<IUserService, UserRepo>();
 
 builder.Services.AddControllersWithViews();
 

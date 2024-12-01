@@ -3,6 +3,7 @@ using System;
 using EntLibraryProj.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntLibraryProj.Services.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    partial class LibraryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241130180753_update")]
+    partial class update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.11");
@@ -448,13 +451,7 @@ namespace EntLibraryProj.Services.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("itemId1")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("itemId2")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("itemId3")
+                    b.Property<int?>("itemId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -466,11 +463,7 @@ namespace EntLibraryProj.Services.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
-                    b.HasIndex("itemId1");
-
-                    b.HasIndex("itemId2");
-
-                    b.HasIndex("itemId3");
+                    b.HasIndex("itemId");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -620,23 +613,11 @@ namespace EntLibraryProj.Services.Migrations
 
             modelBuilder.Entity("EntLibraryProj.Entities.LibraryUser", b =>
                 {
-                    b.HasOne("EntLibraryProj.Entities.LibraryItem", "Item1")
+                    b.HasOne("EntLibraryProj.Entities.LibraryItem", "Item")
                         .WithMany()
-                        .HasForeignKey("itemId1");
+                        .HasForeignKey("itemId");
 
-                    b.HasOne("EntLibraryProj.Entities.LibraryItem", "Item2")
-                        .WithMany()
-                        .HasForeignKey("itemId2");
-
-                    b.HasOne("EntLibraryProj.Entities.LibraryItem", "Item3")
-                        .WithMany()
-                        .HasForeignKey("itemId3");
-
-                    b.Navigation("Item1");
-
-                    b.Navigation("Item2");
-
-                    b.Navigation("Item3");
+                    b.Navigation("Item");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

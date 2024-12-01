@@ -13,12 +13,14 @@ namespace EntLibraryProj.Operations.Controllers
     {
         private ILibraryService _libraryService;
         private ICategoryServices _categoryService;
+        private IUserService _userService;
         List<SelectListItem> _selectListItemListOfCats;
 
-        public LibraryController(ILibraryService libraryService, ICategoryServices categoryService)
+        public LibraryController(ILibraryService libraryService, ICategoryServices categoryService, IUserService userService)
         {
             _libraryService = libraryService;
             _categoryService = categoryService;
+            _userService = userService;
             _selectListItemListOfCats = ModelActions.CreateSelectListItemListForCategories(_categoryService.ListCategory().ToList());
         }
         [Route("[action]")]
@@ -62,18 +64,22 @@ namespace EntLibraryProj.Operations.Controllers
             return RedirectToAction("ShowItems");
         }
         [Authorize(Roles = "Admin")]
-        [Route("[action]")]
+        [Route("[action]/{id}")]
         [HttpGet]
         public IActionResult DeleteItem(int id) 
         {
-            LibraryItem? item = _libraryService.GetItem(id);
+            LibraryItem? item = _libraryService.GetItem(id); //grab item
+            foreach(LibraryUser user in _userService.GetUsers())
+            {
+                _userService.RemoveLibItem(user.UserName, id);
+            }
             if (item == null) { return RedirectToAction("ShowItems"); }
             _libraryService.DeleteItem(id);
             return RedirectToAction("ShowItems");
         }
 
-        [Authorize(Roles = "Admin, User, Standard")]
-        [Route("[action]")]
+        [Authorize]
+        [Route("[action]/{id}")]
         [HttpGet]
         public IActionResult ItemDetails(int? id)
         {
@@ -84,7 +90,7 @@ namespace EntLibraryProj.Operations.Controllers
             return View(item);
         }
 
-        [Route("[action]")]
+        [Route("[action]/{id}")]
         [HttpGet]
         public IActionResult UpdateItem(int id)
         {
@@ -173,6 +179,63 @@ namespace EntLibraryProj.Operations.Controllers
             {
                 return View(_libraryService.GetItems());
             }
+        }
+        [Authorize]
+        [Route("[action]/{id}")]
+        public IActionResult CheckOutBook(int id)
+        {
+            string name = User.Identity.Name;
+            bool stat = _libraryService.CheckOutBook(id);
+            if (stat)
+            {
+                stat = _userService.AddLibItem(name, id);
+                if (!stat)
+                {
+                    _libraryService.ReturnBook(id);
+                }
+            }
+            return RedirectToAction(nameof(ShowItems));
+        }
+
+        [Authorize]
+        [Route("[action]/{id}")]
+        public IActionResult Return(int id)
+        {
+            string name = User.Identity.Name;
+            bool stat = _libraryService.ReturnBook(id);
+            if (stat)
+            {
+                stat = _userService.RemoveLibItem(name, id);
+                if (!stat)
+                {
+                    _libraryService.CheckOutBook(id);
+                }
+            }
+            return RedirectToAction(nameof(ShowItems));
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("[action]")]
+        public IActionResult CheckedOut() //show all items a user has checked out
+        {
+            string name = User.Identity.Name; //get logged in user
+            LibraryUser user = _userService.GetLibraryUser(name); //get name associated with u-name
+            List<int> items = new List<int>();
+            if (user.itemId1 != null) { items.Add((int)user.itemId1); }
+            if (user.itemId2 != null) { items.Add((int)user.itemId2); }
+            if (user.itemId3 != null) { items.Add((int)user.itemId3); }
+            if (items.Count == 0) { return RedirectToAction("Index", "Home"); }// no checked out item
+            List<LibraryItem> list = new List<LibraryItem>();
+            foreach (var item in items)
+            {
+                LibraryItem? libraryItem = _libraryService.GetItem(item);
+                if (libraryItem != null)
+                {
+                    list.Add(libraryItem);
+                }
+            }
+            return View(list);
         }
     }
 }

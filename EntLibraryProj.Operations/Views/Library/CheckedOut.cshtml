@@ -1,0 +1,84 @@
+﻿@using EntLibraryProj.Entities
+@model List<LibraryItem>
+
+<div>
+    <table border=1 class="table table-striped">
+        <thead>
+            <tr style="background-color:DarkSeaGreen;">
+                <th>
+                    @Html.DisplayNameFor(m => m[0].LibItemId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m[0].Category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m[0].ItemName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m[0].CreatorName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m[0].Publisher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m[0].OriginCountry)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m[0].Genre)
+                </th>
+
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (LibraryItem Item in Model)
+                {
+                    <tr>
+                        <th>
+                            @Html.DisplayFor(m => Item.LibItemId)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(m => Item.Category.CategoryName)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(m => Item.ItemName)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(m => Item.CreatorName)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(m => Item.Publisher)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(m => Item.OriginCountry)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(m => Item.Genre)
+                        </th>
+
+                        <td>
+                            @using (Html.BeginForm("Return", "Library", new { id = Item.LibItemId }, FormMethod.Get))
+                            {
+                                <input type="submit" value="Return" />
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4">
+                        No Items currently available
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>}
+
