@@ -6,7 +6,7 @@
 }
 @using (Html.BeginForm("CreateRole", "Admin"))
 {
-    @Html.ValidationSummary("Validation Summary", new { @class = "text-danger" })
+    @Html.ValidationSummary("", new { @class = "text-danger" })
 
     @Html.Label("Role Name: ")
     @Html.TextBoxFor(x => x.RoleName)
