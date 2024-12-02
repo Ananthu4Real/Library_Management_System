@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 namespace EntLibraryProj.Entities
 {
     public class CreateRoleViewModel
+    /// <summary>
+    /// Principle: Ian. Used to add roles to the role table
+    /// </summary>
     {
         [Required]
         public string RoleName { get; set; }

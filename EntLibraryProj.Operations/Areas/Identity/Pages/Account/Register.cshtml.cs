@@ -71,6 +71,9 @@ namespace EntLibraryProj.Operations.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            /// <summary>
+            /// This file is done by ian. Adds the extra library card, first name and last name fields. Library card number is randomly set, not chosen by the user
+            /// </summary>
             [Length(7,15)]
             public int? LibraryCardNum { get; set; }
             [Required(ErrorMessage = "Name can't be empty.")] // Validaiton attribute 'Required'

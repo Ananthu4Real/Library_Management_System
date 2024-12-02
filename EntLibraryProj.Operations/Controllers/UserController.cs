@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EntLibraryProj.Operations.Controllers
 {
+    /// <summary>
+    /// By Ryan. Primarily used for creating the table that shows off the users and their roles 
+    /// </summary>
     [Route("[controller]")]
     public class UserController : Controller
     {

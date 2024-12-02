@@ -10,6 +10,9 @@ namespace EntLibraryProj.Entities;
 // Add profile data for application users by adding properties to the LibraryUser class
 public class LibraryUser : IdentityUser
 {
+    /// <summary>
+    /// Principle: Ian for the first three, Ryan for the rest. Ian used to add custom identity users to the table. Ryan used it to add up to three items for each user for item checkout
+    /// </summary>
     public int LibraryCardNum { get; set; }
     public string? FirstName { get; set; }
     public string? LastName { get; set; }

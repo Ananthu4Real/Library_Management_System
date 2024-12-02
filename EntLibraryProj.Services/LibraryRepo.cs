@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace EntLibraryProj.Services
 {
     /// <summary>
-    /// Enables crud operations for Library Items
+    /// Enables crud operations for Library Items. Ryan.
     /// </summary>
     public class LibraryRepo : ILibraryService
     {

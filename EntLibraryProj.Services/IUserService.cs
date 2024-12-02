@@ -10,6 +10,11 @@ namespace EntLibraryProj.Services
 {
     public interface IUserService
     {
+        /// <summary>
+        /// By Ryan
+        /// </summary>
+        /// <param name="uname"></param>
+        /// <returns></returns>
         //Gets the library user, adds an item to their name, removes said items. 
         LibraryUser? GetLibraryUser(string uname);
         bool AddLibItem(string uname, int itemID);

@@ -9,7 +9,7 @@ namespace EntLibraryProj.Services
 {
     public interface ICategoryServices
     {
-        //Allows listing of categories
+        //Allows listing of categories. By Ian
         public IEnumerable<Category> ListCategory();
     }
 }

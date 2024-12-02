@@ -11,7 +11,7 @@ namespace EntLibraryProj.Services
     public interface ILibraryService
     {
         /// <summary>
-        /// Various CRUD operations are implemented in these services
+        /// Various CRUD operations are implemented in these services. By Ryan
         /// </summary>
         /// <returns></returns>
         public List<LibraryItem> GetItems();

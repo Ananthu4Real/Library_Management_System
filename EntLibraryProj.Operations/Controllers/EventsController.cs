@@ -4,7 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 public class EventsController : Controller
 {
 
-    // GET: Displays the Event Registration Form
+    /// <summary>
+    /// Done by Noah. Controls Events View's functionality
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
 
     [HttpGet("Events/Register/{id}")]
     public IActionResult EventRegistrationForm(int id)

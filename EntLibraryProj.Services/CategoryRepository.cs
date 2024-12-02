@@ -5,8 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace EntLibraryProj.Services
 {
+    /// <summary>
+    /// By Ian
+    /// </summary>
     public class CategoryRepository : ICategoryServices
     {
         private readonly LibraryDbContext _libraryDbContext;

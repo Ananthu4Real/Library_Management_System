@@ -5,7 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EntLibraryProj.Entities
 {
     public class LibraryItem
-    {
+    {/// <summary>
+     /// Principle: Ian, although Ryan helped a bit at the beginning. Used for defining what the library items are, affects the fields available in the table it is added to, etc.
+     /// </summary>
         [Key]
         [Required(ErrorMessage = "Id is required")] // Validaiton attribute 'Required'
         [Range(1, 10000000)]

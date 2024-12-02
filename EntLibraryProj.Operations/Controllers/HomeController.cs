@@ -7,6 +7,9 @@ namespace EntLibraryProj.Operations.Controllers
 {
     public class HomeController : Controller
     {
+        /// <summary>
+        /// Front page done by Ian. Header done by Ian. The FAQ, Events done by Noah
+        /// </summary>
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)

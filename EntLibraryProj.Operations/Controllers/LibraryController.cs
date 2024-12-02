@@ -8,6 +8,11 @@ using System.Globalization;
 
 namespace EntLibraryProj.Operations.Controllers
 {
+    /// <summary>
+    /// Library controller is done in part by both Ian and Ryan. Ian added validations and improved areas of the functions Ryan made. Most are done by Ian unless otherwise stated.
+    /// Views are improved by Ian as well, but were first by Ryan. 
+    /// All check out book functionality by Ryan. List items by cat and creation date by Ian. Delete was Ryan too.
+    /// </summary>
     [Route("[controller]")]
     public class LibraryController : Controller
     {

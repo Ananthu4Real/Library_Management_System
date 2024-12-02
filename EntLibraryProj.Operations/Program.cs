@@ -2,7 +2,7 @@ using EntLibraryProj.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using EntLibraryProj.Entities;
-
+//Modified by Ian
 
 var builder = WebApplication.CreateBuilder(args);
 //var connectionString = builder.Configuration.GetConnectionString("SQLiteConn");// ?? throw new InvalidOperationException("Connection string 'LibraryDbContext' not found.");

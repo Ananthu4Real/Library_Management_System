@@ -8,6 +8,9 @@ namespace EntLibraryProj.Entities
 {
     public class AddUserRoleViewModel
     {
+        /// <summary>
+        /// Principle: Ian. Used to add users/roles to the userrole table
+        /// </summary>
         public string UserId { get; set; }
         public string UserName { get; set; }
         public int? LibraryCardNum { get; set; }

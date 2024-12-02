@@ -5,6 +5,9 @@ using EntLibraryProj.Entities;
 
 namespace EntLibraryProj.Operations.Controllers
 {
+    /// <summary>
+    /// Implements admin functionality. Done by Ian
+    /// </summary>
     public class AdminController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager; //This is used to manage and add roles

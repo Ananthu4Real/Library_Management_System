@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace EntLibraryProj.Services
 {
+    /// <summary>
+    /// By Ryan. Used to Get users and add/remove library items from their account
+    /// </summary>
     public class UserRepo : IUserService
     {
         private readonly LibraryDbContext _context;
