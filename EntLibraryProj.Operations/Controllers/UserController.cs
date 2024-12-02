@@ -13,7 +13,12 @@ namespace EntLibraryProj.Operations.Controllers
         private ICategoryServices _categoryService;
         private IUserService _userService;
         List<SelectListItem> _selectListItemListOfCats;
-
+        /// <summary>
+        /// Constructor. Seems to be copied from the other control. Only really needs the User Service here, but adding the others doesn't seem to hurt. 
+        /// </summary>
+        /// <param name="libraryService"></param>
+        /// <param name="categoryService"></param>
+        /// <param name="userService"></param>
         public UserController(ILibraryService libraryService, ICategoryServices categoryService, IUserService userService)
         {
             _libraryService = libraryService;

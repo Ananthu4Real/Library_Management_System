@@ -10,6 +10,10 @@ namespace EntLibraryProj.Services
     public class CategoryRepository : ICategoryServices
     {
         private readonly LibraryDbContext _libraryDbContext;
+        /// <summary>
+        /// Repo constructor gets the library db context for its operations to work
+        /// </summary>
+        /// <param name="libraryDbContext"></param>
         public CategoryRepository(LibraryDbContext libraryDbContext)
         {
             _libraryDbContext = libraryDbContext;

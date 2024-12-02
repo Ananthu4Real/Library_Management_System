@@ -17,7 +17,10 @@ namespace EntLibraryProj.Services
     {
         
         private readonly LibraryDbContext _context;
-        
+        /// <summary>
+        /// Constructor, adds the db context
+        /// </summary>
+        /// <param name="context"></param>
         public LibraryRepo(LibraryDbContext context)
         {
             _context = context;
@@ -47,7 +50,10 @@ namespace EntLibraryProj.Services
         {
             return _context.LibraryItems.ToList();
         }
-
+        /// <summary>
+        /// Updates each of the fields of the item using the inputted LibraryItem
+        /// </summary>
+        /// <param name="item"></param>
         public void UpdateItem(LibraryItem item)
         {
             LibraryItem? L = GetItem(item.LibItemId);

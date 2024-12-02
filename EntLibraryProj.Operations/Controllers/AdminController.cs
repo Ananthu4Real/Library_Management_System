@@ -10,7 +10,7 @@ namespace EntLibraryProj.Operations.Controllers
         private readonly RoleManager<IdentityRole> roleManager; //This is used to manage and add roles
         private readonly UserManager<LibraryUser> userManager;  //Allows users to have roles assigned to them. LibraryUser is used over the base IdentityUSer
 
-        //Constructor, adds roles
+        ///Constructor, adds roles and user manager setup. The user takes the custom LibraryUser
         public AdminController(RoleManager<IdentityRole> roleManager, UserManager<LibraryUser> userManager)
         {
             this.roleManager = roleManager;
@@ -19,7 +19,7 @@ namespace EntLibraryProj.Operations.Controllers
         
         [Route("[action]")]
         [HttpGet]
-        //[Authorize]
+        
         public IActionResult CreateRole()
         {
 

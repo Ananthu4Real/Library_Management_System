@@ -7,6 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace EntLibraryProj.Services;
 public class LibraryDbContext : IdentityDbContext<LibraryUser>
 {
+    /// <summary>
+    /// Constructor works as normal, but it should be noted that the class uses the Identity db context instead of the normal way of building to implement the LibraryUser identity properly
+    /// </summary>
+    /// <param name="options"></param>
     public LibraryDbContext(DbContextOptions<LibraryDbContext> options) 
         : base(options) { }
 
@@ -278,7 +282,9 @@ public class LibraryDbContext : IdentityDbContext<LibraryUser>
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
     }
-    //Adds the first name/last name and library card number to the LibraryUser's respective table
+    /// <summary>
+    /// Adds the first name/last name and library card number to the LibraryUser's respective table
+    /// </summary>
     internal class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<LibraryUser>
     {
         public void Configure(EntityTypeBuilder<LibraryUser> builder)

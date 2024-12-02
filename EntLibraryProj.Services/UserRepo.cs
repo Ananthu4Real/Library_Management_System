@@ -96,6 +96,11 @@ namespace EntLibraryProj.Services
             List<LibraryUser> users = _context.UserTable.Include("Item1").Include("Item2").Include("Item3").ToList();
             return users;
         }
+        /// <summary>
+        /// Used to get a role from the given item, where the id matches the rolename
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public string GetRole(string item) //Get A role with specific userID
         {
             Microsoft.AspNetCore.Identity.IdentityUserRole<string>? role = _context.UserRoles.Where(e => e.UserId == item).FirstOrDefault(); //Get Role ID Connected to user
